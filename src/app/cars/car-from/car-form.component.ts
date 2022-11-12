@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {CarsService} from "../cars.service";
-import {Car} from "../models/car";
-import {Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CarsService} from '../cars.service';
+import {Car} from '../models/car';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'cs-car-form',

@@ -1,15 +1,9 @@
-export interface Car {
-    id: number;
-    model: string;
-    type: string;
-    plate: string;
-    deliveryDate: string;
-    deadline: string;
-    color: string;
-    power: number;
-    clientFirstName: string;
-    clientSurname: string;
-    cost: number,
-    isFullyDamaged: boolean;
-    year: number;
+import {BodyType} from '../enums/car/body-type';
+import {EngineType} from '../enums/car/engine-type';
+import {Vehicle} from './vehicle';
+
+export interface Car extends Vehicle {
+  engineType: EngineType;
+  bodyType: BodyType;
+  numberOfSeats: number;
 }

@@ -1,11 +1,9 @@
-import {AfterViewInit, Component, Inject, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Car} from '../models/car';
-import {TotalCostComponent} from "../total-cost/total-cost.component";
-import {CarsService} from "../cars.service";
-import {Router} from "@angular/router";
-import {FormBuilder} from "@angular/forms";
-import {MdbModalRef, MdbModalService} from "mdb-angular-ui-kit/modal";
-import {ModalComponent} from "../../core-module/modal/modal.component";
+import {TotalCostComponent} from '../total-cost/total-cost.component';
+import {CarsService} from '../cars.service';
+import {Router} from '@angular/router';
+import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'cars-list',
@@ -15,7 +13,7 @@ import {ModalComponent} from "../../core-module/modal/modal.component";
 })
 export class CarsListComponent implements OnInit, AfterViewInit {
 
-  @ViewChild("totalCostRef") totalCostRef: TotalCostComponent;
+  @ViewChild('totalCostRef') totalCostRef: TotalCostComponent;
   totalCost: number = 0;
   grossCost: number = 0;
   cars: Car[];
