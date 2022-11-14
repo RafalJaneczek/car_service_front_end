@@ -1,6 +1,5 @@
-import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Car} from '../models/car';
-import {TotalCostComponent} from '../total-cost/total-cost.component';
 import {CarsService} from '../cars.service';
 import {Router} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
@@ -11,11 +10,9 @@ import {FormBuilder} from '@angular/forms';
   styleUrls: ['./cars-list.component.less']
   , encapsulation: ViewEncapsulation.None
 })
-export class CarsListComponent implements OnInit, AfterViewInit {
+export class CarsListComponent implements OnInit {
 
-  @ViewChild('totalCostRef') totalCostRef: TotalCostComponent;
-  totalCost: number = 0;
-  grossCost: number = 0;
+  @ViewChild('totalCostRef')
   cars: Car[];
 
   constructor(private carsService: CarsService,
@@ -31,7 +28,6 @@ export class CarsListComponent implements OnInit, AfterViewInit {
   loadCars(): void {
     this.carsService.getCars().subscribe((cars) => {
       this.cars = cars;
-      this.countTotalCost();
     })
   }
 
@@ -44,24 +40,6 @@ export class CarsListComponent implements OnInit, AfterViewInit {
 
   goToCarDetails(car: Car) {
     this.router.navigate(['/cars', car.id])
-  }
-
-  ngAfterViewInit(): void {
-    this.totalCostRef.showGross();
-  }
-
-  showGross(): void {
-    this.totalCostRef.showGross();
-  }
-
-  countTotalCost(): void {
-    this.totalCost = this.cars
-      .map((car) => car.cost)
-      .reduce((prev, next) => prev + next);
-  }
-
-  onShownGross(grossCost: number): void {
-    this.grossCost = grossCost;
   }
 
 }

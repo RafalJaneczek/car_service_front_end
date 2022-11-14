@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CarsService} from '../cars.service';
 import {Car} from '../models/car';
 import {Router} from '@angular/router';
+import {CarUtils} from "../utils/car-utils";
+import {VehicleUtils} from "../utils/vehicle-utils";
 
 @Component({
   selector: 'cs-car-form',
@@ -19,12 +21,22 @@ export class CarFormComponent implements OnInit {
   @Input()
   isUpdateForm: boolean = false;
 
+  bodyTypes: Map<string, string> = CarUtils.bodyTypes;
+  engineTypes: Map<string, string> = CarUtils.engineTypes;
+  condition: Map<string, string> = VehicleUtils.condition;
+  damaged: Map<boolean, string> = VehicleUtils.isDamaged;
+  numberOfSeatsArray: number[] = CarUtils.numberOfSeatsArray;
+  productionYears: number[] = [];
+
+  readonly MIN_PRODUCTION_YEAR: number = 1900;
+
   constructor(private carsService: CarsService,
               private formBuilder: FormBuilder,
               private router: Router) {
   }
 
   ngOnInit(): void {
+    this.getProductionYears();
     this.carForm = this.buildCarForm();
   }
 
@@ -40,39 +52,44 @@ export class CarFormComponent implements OnInit {
     });
   }
 
-
   buildCarForm(): FormGroup {
     if (this.isUpdateForm) {
       return this.formBuilder.group({
+        mark: [this.car.mark, Validators.required],
         model: [this.car.model, Validators.required],
-        type: [this.car.type, Validators.required],
-        plate: [this.car.plate, [Validators.required, Validators.minLength(3), Validators.maxLength(7)]],
-        deliveryDate: [this.car.deliveryDate, Validators.required],
-        deadline: [this.car.deadline, Validators.required],
-        color: [this.car.color, Validators.required],
-        power: [this.car.power, Validators.required],
-        clientFirstName: [this.car.clientFirstName, Validators.required],
-        clientSurname: [this.car.clientSurname, Validators.required],
-        cost: [this.car.cost, Validators.required],
-        isFullyDamaged: this.car.isFullyDamaged,
-        year: [this.car.year, Validators.required]
+        bodyType: [this.car.bodyType, Validators.required],
+        course: [this.car.course, Validators.required],
+        productionYear: [this.car.productionYear, Validators.required],
+        numberOfSeats: [this.car.numberOfSeats, Validators.required],
+        engineCapacity: [this.car.engineCapacity, Validators.required],
+        enginePower: [this.car.enginePower, Validators.required],
+        engineType: [this.car.engineType, Validators.required],
+        vehicleCondition: [this.car.vehicleCondition, Validators.required],
+        damaged: [this.car.damaged, Validators.required],
+        price: [this.car.price, Validators.required]
       });
     } else {
       return this.formBuilder.group({
+        mark: ['', Validators.required],
         model: ['', Validators.required],
-        type: ['', Validators.required],
-        plate: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(7)]],
-        deliveryDate: ['', Validators.required],
-        deadline: ['', Validators.required],
-        color: ['', Validators.required],
-        power: ['', Validators.required],
-        clientFirstName: ['', Validators.required],
-        clientSurname: ['', Validators.required],
-        cost: ['', Validators.required],
-        isFullyDamaged: false,
-        year: ['', Validators.required],
+        bodyType: ['', Validators.required],
+        course: ['', Validators.required],
+        productionYear: ['', Validators.required],
+        numberOfSeats: ['', Validators.required],
+        engineCapacity: ['', Validators.required],
+        enginePower: ['', Validators.required],
+        engineType: ['', Validators.required],
+        vehicleCondition: ['', Validators.required],
+        damaged: ['', Validators.required],
+        price: ['', Validators.required]
       });
     }
   }
 
+  private getProductionYears(): void {
+    const currentYear = new Date().getFullYear();
+    for (let y = currentYear; y >= this.MIN_PRODUCTION_YEAR; y--) {
+      this.productionYears.push(y);
+    }
+  }
 }

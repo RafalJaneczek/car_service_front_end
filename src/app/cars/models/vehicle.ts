@@ -1,5 +1,3 @@
-import {VehicleCondition} from '../enums/vehicle-condition';
-
 export interface Vehicle {
   id: number;
   mark: string;
@@ -7,7 +5,8 @@ export interface Vehicle {
   engineCapacity: number;
   enginePower: number;
   course: number;
-  vehicleCondition: VehicleCondition;
+  vehicleCondition: string;
   damaged: boolean;
+  productionYear: number;
   price: number;
 }
