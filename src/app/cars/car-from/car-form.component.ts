@@ -56,8 +56,8 @@ export class CarFormComponent implements OnInit {
   buildCarForm(): FormGroup {
     if (this.isUpdateForm) {
       return this.formBuilder.group({
-        mark: [this.car.mark, Validators.required],
-        model: [this.car.model, Validators.required],
+        mark: [this.car.mark, [Validators.required, Validators.minLength(2)]],
+        model: [this.car.model, [Validators.required, Validators.minLength(2)]],
         bodyType: [this.car.bodyType, Validators.required],
         course: [this.car.course, [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
         productionYear: [this.car.productionYear, Validators.required],
@@ -71,8 +71,8 @@ export class CarFormComponent implements OnInit {
       });
     } else {
       return this.formBuilder.group({
-        mark: ['', Validators.required],
-        model: ['', Validators.required],
+        mark: ['', [Validators.required, Validators.minLength(2)]],
+        model: ['', [Validators.required, Validators.minLength(2)]],
         bodyType: ['', Validators.required],
         course: ['', [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
         productionYear: ['', Validators.required],
