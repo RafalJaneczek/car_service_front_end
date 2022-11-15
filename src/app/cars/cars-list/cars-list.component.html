@@ -22,7 +22,7 @@
                     <tr *ngFor="let car of cars; let i = index" (click)="goToCarDetails(car)" class="row-car">
                         <td>{{car.mark}}</td>
                         <td>{{car.model}}</td>
-                        <td>{{car.productionYear | date:'shortDate'}}</td>
+                        <td>{{car.productionYear}}</td>
                         <td csImportant>{{car.price | currency:'PLN':true}}</td>
                         <td>
                           <button (click)="removeCar(car, $event)" type="button" class="btn btn-danger">Remove</button>

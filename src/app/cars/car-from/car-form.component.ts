@@ -3,8 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CarsService} from '../cars.service';
 import {Car} from '../models/car';
 import {Router} from '@angular/router';
-import {CarUtils} from "../utils/car-utils";
-import {VehicleUtils} from "../utils/vehicle-utils";
+import {CarUtils} from '../utils/car-utils';
+import {VehicleUtils} from '../utils/vehicle-utils';
 
 @Component({
   selector: 'cs-car-form',
@@ -29,6 +29,7 @@ export class CarFormComponent implements OnInit {
   productionYears: number[] = [];
 
   readonly MIN_PRODUCTION_YEAR: number = 1900;
+  readonly ONLY_DIGITS_REGEX = '^[0-9]*$';
 
   constructor(private carsService: CarsService,
               private formBuilder: FormBuilder,
@@ -58,30 +59,30 @@ export class CarFormComponent implements OnInit {
         mark: [this.car.mark, Validators.required],
         model: [this.car.model, Validators.required],
         bodyType: [this.car.bodyType, Validators.required],
-        course: [this.car.course, Validators.required],
+        course: [this.car.course, [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
         productionYear: [this.car.productionYear, Validators.required],
         numberOfSeats: [this.car.numberOfSeats, Validators.required],
-        engineCapacity: [this.car.engineCapacity, Validators.required],
-        enginePower: [this.car.enginePower, Validators.required],
+        engineCapacity: [this.car.engineCapacity, [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
+        enginePower: [this.car.enginePower, [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
         engineType: [this.car.engineType, Validators.required],
         vehicleCondition: [this.car.vehicleCondition, Validators.required],
         damaged: [this.car.damaged, Validators.required],
-        price: [this.car.price, Validators.required]
+        price: [this.car.price, [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]]
       });
     } else {
       return this.formBuilder.group({
         mark: ['', Validators.required],
         model: ['', Validators.required],
         bodyType: ['', Validators.required],
-        course: ['', Validators.required],
+        course: ['', [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
         productionYear: ['', Validators.required],
         numberOfSeats: ['', Validators.required],
-        engineCapacity: ['', Validators.required],
-        enginePower: ['', Validators.required],
+        engineCapacity: ['', [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
+        enginePower: ['', [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
         engineType: ['', Validators.required],
         vehicleCondition: ['', Validators.required],
         damaged: ['', Validators.required],
-        price: ['', Validators.required]
+        price: ['', [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]]
       });
     }
   }

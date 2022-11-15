@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Car} from '../models/car';
 import {CarsService} from '../cars.service';
 import {Router} from '@angular/router';
@@ -12,7 +12,6 @@ import {FormBuilder} from '@angular/forms';
 })
 export class CarsListComponent implements OnInit {
 
-  @ViewChild('totalCostRef')
   cars: Car[];
 
   constructor(private carsService: CarsService,
@@ -28,7 +27,7 @@ export class CarsListComponent implements OnInit {
   loadCars(): void {
     this.carsService.getCars().subscribe((cars) => {
       this.cars = cars;
-    })
+    });
   }
 
   removeCar(car: Car, event: Event) {
@@ -39,7 +38,7 @@ export class CarsListComponent implements OnInit {
   }
 
   goToCarDetails(car: Car) {
-    this.router.navigate(['/cars', car.id])
+    this.router.navigate(['/cars', car.id]);
   }
 
 }
