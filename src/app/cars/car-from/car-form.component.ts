@@ -1,10 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CarsService} from '../cars.service';
 import {Car} from '../models/car';
 import {Router} from '@angular/router';
 import {CarUtils} from '../utils/car-utils';
 import {VehicleUtils} from '../utils/vehicle-utils';
+import {onlyDigitsValidator} from '../validators';
 
 @Component({
   selector: 'cs-car-form',
@@ -23,13 +24,26 @@ export class CarFormComponent implements OnInit {
 
   bodyTypes: Map<string, string> = CarUtils.bodyTypes;
   engineTypes: Map<string, string> = CarUtils.engineTypes;
-  condition: Map<string, string> = VehicleUtils.condition;
-  damaged: Map<boolean, string> = VehicleUtils.isDamaged;
+  conditionStatuses: Map<string, string> = VehicleUtils.condition;
+  damageStatuses: Map<boolean, string> = VehicleUtils.isDamaged;
   numberOfSeatsArray: number[] = CarUtils.numberOfSeatsArray;
   productionYears: number[] = [];
 
-  readonly MIN_PRODUCTION_YEAR: number = 1900;
-  readonly ONLY_DIGITS_REGEX = '^[0-9]*$';
+  mark: FormControl;
+  model: FormControl;
+  bodyType: FormControl;
+  course: FormControl;
+  productionYear: FormControl;
+  numberOfSeats: FormControl;
+  engineCapacity: FormControl;
+  enginePower: FormControl;
+  engineType: FormControl;
+  vehicleCondition: FormControl;
+  damaged: FormControl;
+  price: FormControl;
+
+  private readonly MIN_PRODUCTION_YEAR: number = 1900;
+  private readonly EMPTY_STRING = '';
 
   constructor(private carsService: CarsService,
               private formBuilder: FormBuilder,
@@ -38,12 +52,13 @@ export class CarFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductionYears();
-    this.carForm = this.buildCarForm();
+    this.createControls();
+    this.createForm();
   }
 
   addCar(): void {
     this.carsService.addCar(this.carForm.value).subscribe(() => {
-      this.buildCarForm();
+      this.createControls();
     });
   }
 
@@ -53,37 +68,50 @@ export class CarFormComponent implements OnInit {
     });
   }
 
-  buildCarForm(): FormGroup {
+  private createForm(): void {
+    this.carForm = new FormGroup({
+      mark: this.mark,
+      model: this.model,
+      bodyType: this.bodyType,
+      course: this.course,
+      productionYear: this.productionYear,
+      numberOfSeats: this.numberOfSeats,
+      engineCapacity: this.engineCapacity,
+      enginePower: this.enginePower,
+      engineType: this.engineType,
+      vehicleCondition: this.vehicleCondition,
+      damaged: this.damaged,
+      price: this.price
+    });
+  }
+
+  private createControls(): void {
     if (this.isUpdateForm) {
-      return this.formBuilder.group({
-        mark: [this.car.mark, [Validators.required, Validators.minLength(2)]],
-        model: [this.car.model, [Validators.required, Validators.minLength(2)]],
-        bodyType: [this.car.bodyType, Validators.required],
-        course: [this.car.course, [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
-        productionYear: [this.car.productionYear, Validators.required],
-        numberOfSeats: [this.car.numberOfSeats, Validators.required],
-        engineCapacity: [this.car.engineCapacity, [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
-        enginePower: [this.car.enginePower, [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
-        engineType: [this.car.engineType, Validators.required],
-        vehicleCondition: [this.car.vehicleCondition, Validators.required],
-        damaged: [this.car.damaged, Validators.required],
-        price: [this.car.price, [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]]
-      });
+      this.mark = new FormControl(this.car.mark, [Validators.required, Validators.minLength(2)]);
+      this.model = new FormControl(this.car.model, [Validators.required, Validators.minLength(2)]);
+      this.bodyType = new FormControl(this.car.bodyType, Validators.required);
+      this.course = new FormControl(this.car.course, [Validators.required, onlyDigitsValidator()]);
+      this.productionYear = new FormControl(this.car.productionYear, Validators.required);
+      this.numberOfSeats = new FormControl(this.car.numberOfSeats, Validators.required);
+      this.engineCapacity = new FormControl(this.car.engineCapacity, [Validators.required, onlyDigitsValidator()]);
+      this.enginePower = new FormControl(this.car.enginePower, [Validators.required, onlyDigitsValidator()]);
+      this.engineType = new FormControl(this.car.engineType, Validators.required);
+      this.vehicleCondition = new FormControl(this.car.vehicleCondition, Validators.required);
+      this.damaged = new FormControl(this.car.damaged, Validators.required);
+      this.price = new FormControl(this.car.price, [Validators.required, onlyDigitsValidator()]);
     } else {
-      return this.formBuilder.group({
-        mark: ['', [Validators.required, Validators.minLength(2)]],
-        model: ['', [Validators.required, Validators.minLength(2)]],
-        bodyType: ['', Validators.required],
-        course: ['', [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
-        productionYear: ['', Validators.required],
-        numberOfSeats: ['', Validators.required],
-        engineCapacity: ['', [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
-        enginePower: ['', [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]],
-        engineType: ['', Validators.required],
-        vehicleCondition: ['', Validators.required],
-        damaged: ['', Validators.required],
-        price: ['', [Validators.required, Validators.pattern(this.ONLY_DIGITS_REGEX)]]
-      });
+      this.mark = new FormControl(this.EMPTY_STRING, [Validators.required, Validators.minLength(2)]);
+      this.model = new FormControl(this.EMPTY_STRING, [Validators.required, Validators.minLength(2)]);
+      this.bodyType = new FormControl(this.EMPTY_STRING, Validators.required);
+      this.course = new FormControl(this.EMPTY_STRING, [Validators.required, onlyDigitsValidator()]);
+      this.productionYear = new FormControl(this.EMPTY_STRING, Validators.required);
+      this.numberOfSeats = new FormControl(this.EMPTY_STRING, Validators.required);
+      this.engineCapacity = new FormControl(this.EMPTY_STRING, [Validators.required, onlyDigitsValidator()]);
+      this.enginePower = new FormControl(this.EMPTY_STRING, [Validators.required, onlyDigitsValidator()]);
+      this.engineType = new FormControl(this.EMPTY_STRING, Validators.required);
+      this.vehicleCondition = new FormControl(this.EMPTY_STRING, Validators.required);
+      this.damaged = new FormControl(this.EMPTY_STRING, Validators.required);
+      this.price = new FormControl(this.EMPTY_STRING, [Validators.required, onlyDigitsValidator()]);
     }
   }
 
