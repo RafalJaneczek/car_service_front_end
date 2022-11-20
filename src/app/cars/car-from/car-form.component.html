@@ -18,6 +18,7 @@
         <input formControlName="mark" type="text" class="form-control" placeholder="Mark">
         <div *ngIf="mark.errors && (mark.dirty || mark.touched)">
           <p *ngIf="mark.errors?.['required']" class="error">This field is required!</p>
+          <p *ngIf="mark.errors?.['minLength']" class="error">Text cannot be shorter than 2 characters</p>
         </div>
       </div>
       <div class="col-sm-4">
@@ -25,6 +26,7 @@
         <input formControlName="model" type="text" class="form-control" placeholder="Model">
         <div *ngIf="model.errors && (model.dirty || model.touched)">
           <p *ngIf="model.errors?.['required']" class="error">This field is required!</p>
+          <p *ngIf="model.errors?.['minLength']" class="error">Text cannot be shorter than 2 characters</p>
         </div>
       </div>
       <div class="col-sm-4">

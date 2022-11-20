@@ -89,28 +89,28 @@ export class CarFormComponent implements OnInit {
     if (this.isUpdateForm) {
       this.mark = new FormControl(this.car.mark, [Validators.required, Validators.minLength(2)]);
       this.model = new FormControl(this.car.model, [Validators.required, Validators.minLength(2)]);
-      this.bodyType = new FormControl(this.car.bodyType, Validators.required);
+      this.bodyType = new FormControl(this.car.bodyType);
       this.course = new FormControl(this.car.course, [Validators.required, onlyDigitsValidator()]);
-      this.productionYear = new FormControl(this.car.productionYear, Validators.required);
-      this.numberOfSeats = new FormControl(this.car.numberOfSeats, Validators.required);
+      this.productionYear = new FormControl(this.car.productionYear);
+      this.numberOfSeats = new FormControl(this.car.numberOfSeats);
       this.engineCapacity = new FormControl(this.car.engineCapacity, [Validators.required, onlyDigitsValidator()]);
       this.enginePower = new FormControl(this.car.enginePower, [Validators.required, onlyDigitsValidator()]);
-      this.engineType = new FormControl(this.car.engineType, Validators.required);
+      this.engineType = new FormControl(this.car.engineType);
       this.vehicleCondition = new FormControl(this.car.vehicleCondition, Validators.required);
-      this.damaged = new FormControl(this.car.damaged, Validators.required);
+      this.damaged = new FormControl(this.car.damaged);
       this.price = new FormControl(this.car.price, [Validators.required, onlyDigitsValidator()]);
     } else {
       this.mark = new FormControl(this.EMPTY_STRING, [Validators.required, Validators.minLength(2)]);
       this.model = new FormControl(this.EMPTY_STRING, [Validators.required, Validators.minLength(2)]);
-      this.bodyType = new FormControl(this.EMPTY_STRING, Validators.required);
+      this.bodyType = new FormControl(this.EMPTY_STRING);
       this.course = new FormControl(this.EMPTY_STRING, [Validators.required, onlyDigitsValidator()]);
-      this.productionYear = new FormControl(this.EMPTY_STRING, Validators.required);
-      this.numberOfSeats = new FormControl(this.EMPTY_STRING, Validators.required);
+      this.productionYear = new FormControl(this.EMPTY_STRING);
+      this.numberOfSeats = new FormControl(this.EMPTY_STRING);
       this.engineCapacity = new FormControl(this.EMPTY_STRING, [Validators.required, onlyDigitsValidator()]);
       this.enginePower = new FormControl(this.EMPTY_STRING, [Validators.required, onlyDigitsValidator()]);
-      this.engineType = new FormControl(this.EMPTY_STRING, Validators.required);
+      this.engineType = new FormControl(this.EMPTY_STRING);
       this.vehicleCondition = new FormControl(this.EMPTY_STRING, Validators.required);
-      this.damaged = new FormControl(this.EMPTY_STRING, Validators.required);
+      this.damaged = new FormControl(this.EMPTY_STRING);
       this.price = new FormControl(this.EMPTY_STRING, [Validators.required, onlyDigitsValidator()]);
     }
   }
