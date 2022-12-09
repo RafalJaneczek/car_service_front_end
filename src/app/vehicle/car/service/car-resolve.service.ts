@@ -1,7 +1,7 @@
-import {CarsService} from "./cars.service";
-import {ActivatedRouteSnapshot, Resolve} from "@angular/router";
-import {Car} from "./models/car";
-import {Injectable} from "@angular/core";
+import {CarsService} from './cars.service';
+import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
+import {Car} from '../model/car';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class CarResolve implements Resolve<Car> {

@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {CarsService} from '../cars.service';
-import {Car} from '../models/car';
+import {CarsService} from '../service/cars.service';
+import {Car} from '../model/car';
 import {Router} from '@angular/router';
 import {CarUtils} from '../utils/car-utils';
-import {VehicleUtils} from '../utils/vehicle-utils';
-import {onlyDigitsValidator} from '../validators';
+import {VehicleUtils} from '../../vehicle-utils';
+import {acceptOnlyDigits} from '../../validators';
 
 @Component({
   selector: 'cs-car-form',
@@ -90,28 +90,28 @@ export class CarFormComponent implements OnInit {
       this.mark = new FormControl(this.car.mark, [Validators.required, Validators.minLength(2)]);
       this.model = new FormControl(this.car.model, [Validators.required, Validators.minLength(2)]);
       this.bodyType = new FormControl(this.car.bodyType);
-      this.course = new FormControl(this.car.course, [Validators.required, onlyDigitsValidator()]);
+      this.course = new FormControl(this.car.course, [Validators.required, acceptOnlyDigits()]);
       this.productionYear = new FormControl(this.car.productionYear);
       this.numberOfSeats = new FormControl(this.car.numberOfSeats);
-      this.engineCapacity = new FormControl(this.car.engineCapacity, [Validators.required, onlyDigitsValidator()]);
-      this.enginePower = new FormControl(this.car.enginePower, [Validators.required, onlyDigitsValidator()]);
+      this.engineCapacity = new FormControl(this.car.engineCapacity, [Validators.required, acceptOnlyDigits()]);
+      this.enginePower = new FormControl(this.car.enginePower, [Validators.required, acceptOnlyDigits()]);
       this.engineType = new FormControl(this.car.engineType);
       this.vehicleCondition = new FormControl(this.car.vehicleCondition, Validators.required);
       this.damaged = new FormControl(this.car.damaged);
-      this.price = new FormControl(this.car.price, [Validators.required, onlyDigitsValidator()]);
+      this.price = new FormControl(this.car.price, [Validators.required, acceptOnlyDigits()]);
     } else {
       this.mark = new FormControl(this.EMPTY_STRING, [Validators.required, Validators.minLength(2)]);
       this.model = new FormControl(this.EMPTY_STRING, [Validators.required, Validators.minLength(2)]);
       this.bodyType = new FormControl(this.EMPTY_STRING);
-      this.course = new FormControl(this.EMPTY_STRING, [Validators.required, onlyDigitsValidator()]);
+      this.course = new FormControl(this.EMPTY_STRING, [Validators.required, acceptOnlyDigits()]);
       this.productionYear = new FormControl(this.EMPTY_STRING);
       this.numberOfSeats = new FormControl(this.EMPTY_STRING);
-      this.engineCapacity = new FormControl(this.EMPTY_STRING, [Validators.required, onlyDigitsValidator()]);
-      this.enginePower = new FormControl(this.EMPTY_STRING, [Validators.required, onlyDigitsValidator()]);
+      this.engineCapacity = new FormControl(this.EMPTY_STRING, [Validators.required, acceptOnlyDigits()]);
+      this.enginePower = new FormControl(this.EMPTY_STRING, [Validators.required, acceptOnlyDigits()]);
       this.engineType = new FormControl(this.EMPTY_STRING);
       this.vehicleCondition = new FormControl(this.EMPTY_STRING, Validators.required);
       this.damaged = new FormControl(this.EMPTY_STRING);
-      this.price = new FormControl(this.EMPTY_STRING, [Validators.required, onlyDigitsValidator()]);
+      this.price = new FormControl(this.EMPTY_STRING, [Validators.required, acceptOnlyDigits()]);
     }
   }
 

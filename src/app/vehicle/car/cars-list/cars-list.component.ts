@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {Car} from '../models/car';
-import {CarsService} from '../cars.service';
+import {Car} from '../model/car';
+import {CarsService} from '../service/cars.service';
 import {Router} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
 

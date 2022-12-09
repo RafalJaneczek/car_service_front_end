@@ -1,6 +1,6 @@
 import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 
-export function onlyDigitsValidator(): ValidatorFn {
+export function acceptOnlyDigits(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
 
     const value = control.value;
