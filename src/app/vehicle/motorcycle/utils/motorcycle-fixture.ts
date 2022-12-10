@@ -1,5 +1,5 @@
-export class MotorcycleUtils {
-  static readonly bodyType: Map<string, string> = new Map([
+export class MotorcycleFixture {
+  static readonly types: Map<string, string> = new Map([
     ['SPORT', 'Sport'],
     ['CRUISER', 'Cruiser'],
     ['CROSS', 'Cross'],
@@ -7,7 +7,7 @@ export class MotorcycleUtils {
     ['SCOOTER', 'Scooter']
   ]);
 
-  static readonly engineType: Map<string, string> = new Map([
+  static readonly engineTypes: Map<string, string> = new Map([
     ['GAS', 'Gas'],
     ['ELECTRIC', 'Electric']
   ]);

@@ -26,5 +26,5 @@ import {CarFormComponent} from './car-from/car-form.component';
     ReactiveFormsModule
   ]
 })
-export class CarsModule {
+export class CarModule {
 }

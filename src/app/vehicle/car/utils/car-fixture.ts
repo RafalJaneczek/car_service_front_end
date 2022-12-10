@@ -1,4 +1,4 @@
-export class CarUtils {
+export class CarFixture {
   static readonly bodyTypes: Map<string, string> = new Map([
     ['SEDAN', 'Sedan'],
     ['HATCHBACK', 'Hatchback'],

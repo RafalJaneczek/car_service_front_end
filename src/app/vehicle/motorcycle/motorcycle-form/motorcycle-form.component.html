@@ -1,1 +1,129 @@
-<p>motorcycle-form works!</p>
+<div *ngIf="!isUpdateForm">
+  <cs-header>
+    <p levels>add new car</p>
+
+    <div content>
+      <p>Car details</p>
+    </div>
+  </cs-header>
+
+  <p class="data-header">Add a new car</p>
+</div>
+
+<div class="data-container">
+  <form [formGroup]="motorcycleForm">
+    <div class="row form-group">
+      <div class="col-sm-4">
+        <label>Mark</label>
+        <input formControlName="mark" type="text" class="form-control" placeholder="Mark">
+        <div *ngIf="mark.errors && (mark.dirty || mark.touched)">
+          <p *ngIf="mark.errors?.['required']" class="error">This field is required!</p>
+          <p *ngIf="mark.errors?.['minLength']" class="error">Text cannot be shorter than 2 characters</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <label>Model</label>
+        <input formControlName="model" type="text" class="form-control" placeholder="Model">
+        <div *ngIf="model.errors && (model.dirty || model.touched)">
+          <p *ngIf="model.errors?.['required']" class="error">This field is required!</p>
+          <p *ngIf="model.errors?.['minLength']" class="error">Text cannot be shorter than 2 characters</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <label>Body type</label>
+        <select class="form-control" formControlName="bodyType">
+          <option disable disabled value="">Type</option>
+          <option *ngFor="let type of type | keyvalue" [value]="type.key">
+            {{type.value}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-sm-4">
+        <label>Course</label>
+        <input formControlName="course" type="text" class="form-control" placeholder="Course">
+        <div *ngIf="course.errors && (course.dirty || course.touched)">
+          <p *ngIf="course.errors?.['required']" class="error">This field is required!</p>
+          <p *ngIf="course.errors?.['onlyDigits']" class="error">Incorrect value!</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <label>Production year</label>
+        <select class="form-control" type="text" formControlName="productionYear">
+          <option selected disabled value="">Production year</option>
+          <option *ngFor="let productionYear of productionYears" [value]="productionYear">
+            {{productionYear}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-sm-4">
+        <label>Engine capacity</label>
+        <input formControlName="engineCapacity" type="text" class="form-control" placeholder="Engine capacity">
+        <div *ngIf="engineCapacity.errors && (engineCapacity.dirty || engineCapacity.touched)">
+          <p *ngIf="engineCapacity.errors?.['required']" class="error">This field is required!</p>
+          <p *ngIf="engineCapacity.errors?.['onlyDigits']" class="error">Incorrect value!</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <label>Engine power</label>
+        <input formControlName="enginePower" type="text" class="form-control" placeholder="Engine power">
+        <div *ngIf="enginePower.errors && (enginePower.dirty || enginePower.touched)">
+          <p *ngIf="enginePower.errors?.['required']" class="error">This field is required!</p>
+          <p *ngIf="enginePower.errors?.['onlyDigits']" class="error">Incorrect value!</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <label>Engine type</label>
+        <select class="form-control" type="text" formControlName="engineType">
+          <option selected disabled value="">Engine type</option>
+          <option *ngFor="let engineType of engineTypes | keyvalue" [value]="engineType.key">
+            {{engineType.value}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-sm-4">
+        <label>Vehicle condition</label>
+        <select class="form-control" type="text" formControlName="vehicleCondition">
+          <option selected disabled value="">Vehicle condition</option>
+          <option *ngFor="let condition of conditionStatuses | keyvalue" [value]="condition.key">
+            {{condition.value}}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-4">
+        <label>Price</label>
+        <input formControlName="price" type="text" class="form-control" placeholder="Price">
+        <div *ngIf="price.errors && (price.dirty || price.touched)">
+          <p *ngIf="price.errors?.['required']" class="error">This field is required!</p>
+          <p *ngIf="price.errors?.['onlyDigits']" class="error">Incorrect value!</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <label>Is damaged</label>
+        <select class="form-control" type="text" formControlName="damaged">
+          <option selected disabled value="">Is damaged</option>
+          <option *ngFor="let state of damageStatuses | keyvalue" [value]="state.key">
+            {{state.value}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <button *ngIf="!isUpdateForm" [disabled]="motorcycleForm.invalid" (click)="addMotorcycle()" type="submit" class="btn btn-primary float-right">Add car</button>
+        <button *ngIf="isUpdateForm" [disabled]="motorcycleForm.invalid" (click)="updateMotorcycle()" type="submit" class="btn btn-primary float-right">Update car</button>
+        <button (click)="motorcycleForm.reset()" type="submit" class="btn btn-default float-right">Reset</button>
+      </div>
+    </div>
+  </form>
+
+</div>

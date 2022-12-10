@@ -3,31 +3,31 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {CarsModule} from './vehicle/car/cars.module';
+import {CarModule} from './vehicle/car/car.module';
 import {HttpClientModule} from "@angular/common/http";
-import {CarsService} from "./vehicle/car/service/cars.service";
+import {CarService} from "./vehicle/car/service/car.service";
 import {CoreModule} from "./core-module/core-module";
 import {FormsModule} from "@angular/forms";
-import {CarsRoutingModule} from "./vehicle/car/cars-routing.module";
+import {CarRoutingModule} from "./vehicle/car/car-routing.module";
 import {ModalComponent} from './core-module/modal/modal.component';
-import { MotorcycleFormComponent } from './vehicle/motorcycle/motorcycle-form/motorcycle-form.component';
+import {MotorcycleModule} from "./vehicle/motorcycle/Motorcycle-module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ModalComponent,
-    MotorcycleFormComponent
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CarsModule,
+    CarModule,
     HttpClientModule,
     CoreModule,
     FormsModule,
-    CarsRoutingModule
+    CarRoutingModule,
+    MotorcycleModule
   ],
-  providers: [CarsService],
+  providers: [CarService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,8 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {Car} from '../../model/car';
-import {CarsService} from '../service/cars.service';
+import {Car} from '../model/car';
+import {CarService} from '../service/car.service';
 import {Router} from '@angular/router';
-import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'cars-list',
@@ -14,8 +13,7 @@ export class CarsListComponent implements OnInit {
 
   cars: Car[];
 
-  constructor(private carsService: CarsService,
-              private formBuilder: FormBuilder,
+  constructor(private carsService: CarService,
               private router: Router) {
   }
 
@@ -25,14 +23,14 @@ export class CarsListComponent implements OnInit {
 
 
   loadCars(): void {
-    this.carsService.getCars().subscribe((cars) => {
+    this.carsService.findAll().subscribe((cars) => {
       this.cars = cars;
     });
   }
 
   removeCar(car: Car, event: Event) {
     event.stopPropagation();
-    this.carsService.removeCar(car.id).subscribe(() => {
+    this.carsService.remove(car.id).subscribe(() => {
       this.loadCars();
     })
   }

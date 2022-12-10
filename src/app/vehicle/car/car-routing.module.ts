@@ -15,5 +15,5 @@ const CARS_ROUTES: Routes = [
   imports: [RouterModule.forChild(CARS_ROUTES)],
   exports: [RouterModule]
 })
-export class CarsRoutingModule {
+export class CarRoutingModule {
 }

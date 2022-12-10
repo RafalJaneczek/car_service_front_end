@@ -1,4 +1,4 @@
-export class VehicleUtils {
+export class VehicleFixture {
   static readonly condition: Map<string, string> = new Map([
     ['NEW', 'New'],
     ['USED', 'Used']

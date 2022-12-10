@@ -1,4 +1,4 @@
-import {Vehicle} from '../vehicle';
+import {Vehicle} from '../../vehicle';
 
 export interface Car extends Vehicle {
   engineType: string;

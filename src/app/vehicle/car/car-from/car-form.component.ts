@@ -1,14 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {CarsService} from '../service/cars.service';
-import {Car} from '../../model/car';
+import {CarService} from '../service/car.service';
+import {Car} from '../model/car';
 import {Router} from '@angular/router';
-import {CarUtils} from '../utils/car-utils';
-import {VehicleUtils} from '../../vehicle-utils';
+import {CarFixture} from '../utils/car-fixture';
+import {VehicleFixture} from '../../utils/vehicle-fixture';
 import {acceptOnlyDigits} from '../../validators';
+import {VehicleUtils} from "../../utils/Vehicle-utils";
 
 @Component({
-  selector: 'cs-car-form',
+  selector: 'app-car-form',
   templateUrl: './car-form.component.html',
   styleUrls: ['./car-form.component.less']
 })
@@ -22,11 +23,11 @@ export class CarFormComponent implements OnInit {
   @Input()
   isUpdateForm: boolean = false;
 
-  bodyTypes: Map<string, string> = CarUtils.bodyTypes;
-  engineTypes: Map<string, string> = CarUtils.engineTypes;
-  conditionStatuses: Map<string, string> = VehicleUtils.condition;
-  damageStatuses: Map<boolean, string> = VehicleUtils.isDamaged;
-  numberOfSeatsArray: number[] = CarUtils.numberOfSeatsArray;
+  bodyTypes: Map<string, string> = CarFixture.bodyTypes;
+  engineTypes: Map<string, string> = CarFixture.engineTypes;
+  conditionStatuses: Map<string, string> = VehicleFixture.condition;
+  damageStatuses: Map<boolean, string> = VehicleFixture.isDamaged;
+  numberOfSeatsArray: number[] = CarFixture.numberOfSeatsArray;
   productionYears: number[] = [];
 
   mark: FormControl;
@@ -42,28 +43,26 @@ export class CarFormComponent implements OnInit {
   damaged: FormControl;
   price: FormControl;
 
-  private readonly MIN_PRODUCTION_YEAR: number = 1900;
   private readonly EMPTY_STRING = '';
 
-  constructor(private carsService: CarsService,
-              private formBuilder: FormBuilder,
+  constructor(private carsService: CarService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.getProductionYears();
+    this.setProductionYears();
     this.createControls();
     this.createForm();
   }
 
   addCar(): void {
-    this.carsService.addCar(this.carForm.value).subscribe(() => {
+    this.carsService.add(this.carForm.value).subscribe(() => {
       this.createControls();
     });
   }
 
   updateCar(): void {
-    this.carsService.updateCar(this.car.id, this.carForm.value).subscribe(() => {
+    this.carsService.update(this.car.id, this.carForm.value).subscribe(() => {
       this.router.navigate(['/cars']);
     });
   }
@@ -115,10 +114,8 @@ export class CarFormComponent implements OnInit {
     }
   }
 
-  private getProductionYears(): void {
-    const currentYear = new Date().getFullYear();
-    for (let y = currentYear; y >= this.MIN_PRODUCTION_YEAR; y--) {
-      this.productionYears.push(y);
-    }
+  private setProductionYears(): void {
+    this.productionYears = VehicleUtils.getProductionYears();
   }
+
 }
