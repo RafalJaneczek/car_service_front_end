@@ -10,11 +10,13 @@ import {CoreModule} from "./core-module/core-module";
 import {FormsModule} from "@angular/forms";
 import {CarsRoutingModule} from "./vehicle/car/cars-routing.module";
 import {ModalComponent} from './core-module/modal/modal.component';
+import { MotorcycleFormComponent } from './vehicle/motorcycle/motorcycle-form/motorcycle-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ModalComponent
+    ModalComponent,
+    MotorcycleFormComponent
   ],
   imports: [
     BrowserModule,

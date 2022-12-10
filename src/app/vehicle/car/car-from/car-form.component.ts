@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CarsService} from '../service/cars.service';
-import {Car} from '../model/car';
+import {Car} from '../../model/car';
 import {Router} from '@angular/router';
 import {CarUtils} from '../utils/car-utils';
 import {VehicleUtils} from '../../vehicle-utils';
