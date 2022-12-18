@@ -2,9 +2,16 @@
   <img src="assets/logo.png" class="logo">
   <nav>
     <ul>
-      <li [routerLink]="['cars']" [routerLinkActive]="'active'">Cars list</li>
-      <li [routerLink]="['add-car']" [routerLinkActive]="'active'">Add new car</li>
-      <li [routerLink]="['add-motorcycle']" [routerLinkActive]="'active'">Add new motorcycle</li>
+      <li (click)="showVehiclesListActionBars()" [ngClass]="{'main-section-active': vehiclesListActionBarsShown}">Vehicles list</li>
+      <div *ngIf="vehiclesListActionBarsShown" [ngClass]="{'collapsed-section': vehiclesListActionBarsShown}">
+        <li [routerLink]="['cars']" [routerLinkActive]="'active'">Cars list</li>
+        <li [routerLink]="['motorcycles']" [routerLinkActive]="'active'">Motorcycles list</li>
+      </div>
+      <li (click)="showVehicleActionBars()" [ngClass]="{'main-section-active': vehicleFormsActionBarsShown}">Add new vehicle</li>
+      <div *ngIf="vehicleFormsActionBarsShown" [ngClass]="{'collapsed-section': vehicleFormsActionBarsShown}">
+        <li [routerLink]="['add-car']" [routerLinkActive]="'active'">Add new car</li>
+        <li [routerLink]="['add-motorcycle']" [routerLinkActive]="'active'">Add new motorcycle</li>
+      </div>
     </ul>
   </nav>
 </div>

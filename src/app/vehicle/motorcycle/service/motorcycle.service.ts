@@ -27,6 +27,7 @@ export class MotorcycleService implements VehicleService<Motorcycle> {
   }
 
   add(data: any): Observable<Motorcycle> {
+    console.log(data);
     return this.http.post<Motorcycle>(this.motorcycleApiUrl + '/add', data)
       .pipe(map((response: Motorcycle) => {
         return response as Motorcycle;

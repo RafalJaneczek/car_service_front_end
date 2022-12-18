@@ -1,0 +1,40 @@
+<cs-header>
+  <p levels>motorcycles</p>
+
+  <div content>
+    <p>List of motorcycles in service</p>
+  </div>
+</cs-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <table *ngIf="motorcycles && motorcycles.length > 0; else noCarsInfo" class="cs-table table table-striped">
+        <thead>
+        <tr>
+          <th>Mark</th>
+          <th>Model</th>
+          <th>Production year</th>
+          <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let motorcycle of motorcycles; let i = index" (click)="goToMotorcycleDetails(motorcycle)" class="row-car">
+          <td>{{motorcycle.mark}}</td>
+          <td>{{motorcycle.model}}</td>
+          <td>{{motorcycle.productionYear}}</td>
+          <td csImportant>{{motorcycle.price | currency:'PLN':true}}</td>
+          <td>
+            <button (click)="removeMotorcycle(motorcycle, $event)" type="button" class="btn btn-danger">Remove</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <ng-template #noCarsInfo>
+        <div class="no-motorcycles-info">
+          <p>Currently no motorcycles in service</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
 
 @Component({
   selector: 'cs-sidebar',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  vehicleFormsActionBarsShown: boolean = false;
+  vehiclesListActionBarsShown: boolean = false;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
+
+  public showVehicleActionBars(): void {
+    this.vehicleFormsActionBarsShown = !this.vehicleFormsActionBarsShown;
+  }
+  public showVehiclesListActionBars(): void {
+    this.vehiclesListActionBarsShown = !this.vehiclesListActionBarsShown;
+  }
+
 
 }

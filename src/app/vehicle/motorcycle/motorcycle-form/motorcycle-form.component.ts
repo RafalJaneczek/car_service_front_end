@@ -24,7 +24,7 @@ export class MotorcycleFormComponent implements OnInit {
   @Input()
   isUpdateForm: boolean = false;
 
-  type: Map<string, string> = MotorcycleFixture.types;
+  types: Map<string, string> = MotorcycleFixture.types;
   engineTypes: Map<string, string> = CarFixture.engineTypes;
   conditionStatuses: Map<string, string> = VehicleFixture.condition;
   damageStatuses: Map<boolean, string> = VehicleFixture.isDamaged;
@@ -32,7 +32,7 @@ export class MotorcycleFormComponent implements OnInit {
 
   mark: FormControl;
   model: FormControl;
-  bodyType: FormControl;
+  type: FormControl;
   course: FormControl;
   productionYear: FormControl;
   engineCapacity: FormControl;
@@ -70,7 +70,7 @@ export class MotorcycleFormComponent implements OnInit {
     this.motorcycleForm = new FormGroup({
       mark: this.mark,
       model: this.model,
-      bodyType: this.bodyType,
+      type: this.type,
       course: this.course,
       productionYear: this.productionYear,
       engineCapacity: this.engineCapacity,
@@ -86,7 +86,7 @@ export class MotorcycleFormComponent implements OnInit {
     if (this.isUpdateForm) {
       this.mark = new FormControl(this.motorcycle.mark, [Validators.required, Validators.minLength(2)]);
       this.model = new FormControl(this.motorcycle.model, [Validators.required, Validators.minLength(2)]);
-      this.bodyType = new FormControl(this.motorcycle.type);
+      this.type = new FormControl(this.motorcycle.type);
       this.course = new FormControl(this.motorcycle.course, [Validators.required, acceptOnlyDigits()]);
       this.productionYear = new FormControl(this.motorcycle.productionYear);
       this.engineCapacity = new FormControl(this.motorcycle.engineCapacity, [Validators.required, acceptOnlyDigits()]);
@@ -98,7 +98,7 @@ export class MotorcycleFormComponent implements OnInit {
     } else {
       this.mark = new FormControl(this.EMPTY_STRING, [Validators.required, Validators.minLength(2)]);
       this.model = new FormControl(this.EMPTY_STRING, [Validators.required, Validators.minLength(2)]);
-      this.bodyType = new FormControl(this.EMPTY_STRING);
+      this.type = new FormControl(this.EMPTY_STRING);
       this.course = new FormControl(this.EMPTY_STRING, [Validators.required, acceptOnlyDigits()]);
       this.productionYear = new FormControl(this.EMPTY_STRING);
       this.engineCapacity = new FormControl(this.EMPTY_STRING, [Validators.required, acceptOnlyDigits()]);

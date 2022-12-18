@@ -5,11 +5,13 @@ import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MotorcycleFormComponent} from "./motorcycle-form/motorcycle-form.component";
 import {MotorcycleService} from "./service/motorcycle.service";
+import {MotorcyclesListComponent} from "./motorcycles-list/motorcycles-list.component";
 
 
 @NgModule({
+  exports: [MotorcyclesListComponent],
   providers: [MotorcycleService],
-  declarations: [MotorcycleFormComponent],
+  declarations: [MotorcycleFormComponent, MotorcyclesListComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -17,4 +19,5 @@ import {MotorcycleService} from "./service/motorcycle.service";
     ReactiveFormsModule
   ]
 })
-export class MotorcycleModule {}
+export class MotorcycleModule {
+}

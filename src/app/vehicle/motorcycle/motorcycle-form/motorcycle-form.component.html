@@ -1,13 +1,13 @@
 <div *ngIf="!isUpdateForm">
   <cs-header>
-    <p levels>add new car</p>
+    <p levels>add new motorcycle</p>
 
     <div content>
-      <p>Car details</p>
+      <p>Motorcycle details</p>
     </div>
   </cs-header>
 
-  <p class="data-header">Add a new car</p>
+  <p class="data-header">Add a new motorcycle</p>
 </div>
 
 <div class="data-container">
@@ -31,9 +31,9 @@
       </div>
       <div class="col-sm-4">
         <label>Body type</label>
-        <select class="form-control" formControlName="bodyType">
+        <select class="form-control" formControlName="type">
           <option disable disabled value="">Type</option>
-          <option *ngFor="let type of type | keyvalue" [value]="type.key">
+          <option *ngFor="let type of types | keyvalue" [value]="type.key">
             {{type.value}}
           </option>
         </select>
