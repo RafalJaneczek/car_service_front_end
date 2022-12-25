@@ -12,19 +12,24 @@ import {Router} from '@angular/router';
 export class CarsListComponent implements OnInit {
 
   cars: Car[];
+  totalPages: number = 0;
+  currentPage: number = 1;
+  pageSize: number = 8;
+  sortBy: string = 'mark';
+  lastPage: number;
 
   constructor(private carsService: CarService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.loadCars();
+    this.loadCars(this.currentPage - 1, this.pageSize, this.sortBy);
   }
 
   public removeCar(car: Car, event: Event) {
     event.stopPropagation();
     this.carsService.remove(car.id).subscribe(() => {
-      this.loadCars();
+      this.loadCars(this.currentPage, this.pageSize, this.sortBy);
     })
   }
 
@@ -32,10 +37,17 @@ export class CarsListComponent implements OnInit {
     this.router.navigate(['/cars', car.id]);
   }
 
-  private loadCars(): void {
-    this.carsService.findAll().subscribe((cars) => {
-      this.cars = cars;
+  public loadCars(pageNo: number, pageSize: number, sortBy: string): void {
+    this.carsService.findAll(pageNo, pageSize, sortBy).subscribe((pageResponse) => {
+      this.cars = pageResponse.vehicles;
+      this.totalPages = pageResponse.totalPages;
+      this.lastPage = pageResponse.totalPages;
     });
+  }
+
+  public loadCarsListByPageNo(pageNo: number): void {
+    this.currentPage = pageNo;
+    this.loadCars(this.currentPage - 1, this.pageSize, this.sortBy);
   }
 
 }

@@ -4,6 +4,7 @@ import {Car} from '../model/car';
 import {HttpClient} from '@angular/common/http';
 import {VehicleService} from "../../service/vehicle-service";
 import {apiUrl} from "../../../global-variables";
+import {PageResponse} from "../../model/PageResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,10 @@ export class CarService implements VehicleService<Car> {
 
   constructor(private http: HttpClient) {}
 
-  findAll(): Observable<Car[]> {
-    return this.http.get<Car[]>(this.carApiUrl + '/get-all')
-      .pipe(map((response: Car[]) => {
-        return response as Car[];
+  findAll(pageNo?: number, pageSize?: number, sortBy?: string): Observable<PageResponse<Car>> {
+    return this.http.get<PageResponse<Car>>(this.carApiUrl + `/get-all?pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${sortBy}`)
+      .pipe(map((response: PageResponse<Car>) => {
+        return response as PageResponse<Car>;
       }))
   }
 

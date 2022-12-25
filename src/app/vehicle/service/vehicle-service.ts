@@ -1,9 +1,10 @@
 import {Vehicle} from "../vehicle";
 import {Observable} from "rxjs";
+import {PageResponse} from "../model/PageResponse";
 
 export interface VehicleService<T extends Vehicle> {
 
-  findAll(): Observable<Vehicle[]>;
+  findAll(): Observable<PageResponse<Vehicle>>;
 
   findById(id: number): Observable<Vehicle>;
 

@@ -9,7 +9,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <table *ngIf="motorcycles && motorcycles.length > 0; else noCarsInfo" class="cs-table table table-striped">
+      <table *ngIf="motorcycles && motorcycles.length > 0; else noMotorcyclesInfo" class="cs-table table table-striped">
         <thead>
         <tr>
           <th>Mark</th>
@@ -30,7 +30,7 @@
         </tr>
         </tbody>
       </table>
-      <ng-template #noCarsInfo>
+      <ng-template #noMotorcyclesInfo>
         <div class="no-motorcycles-info">
           <p>Currently no motorcycles in service</p>
         </div>

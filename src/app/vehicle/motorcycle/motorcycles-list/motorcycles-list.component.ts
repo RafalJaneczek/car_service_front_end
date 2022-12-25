@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {MotorcycleService} from "../service/motorcycle.service";
-import {Router} from "@angular/router";
-import {Motorcycle} from "../model/motorcycle";
+import {MotorcycleService} from '../service/motorcycle.service';
+import {Router} from '@angular/router';
+import {Motorcycle} from '../model/motorcycle';
 
 @Component({
   selector: 'cs-motorcycles-list',
@@ -30,7 +30,7 @@ export class MotorcyclesListComponent implements OnInit {
 
   private loadMotorcycles(): void {
     this.motorcyclesService.findAll().subscribe((motorcycles) => {
-      this.motorcycles = motorcycles;
+      this.motorcycles = motorcycles.vehicles;
     })
   }
 
