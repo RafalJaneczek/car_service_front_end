@@ -5,20 +5,88 @@
     <p>List of cars in service</p>
   </div>
 </cs-header>
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
 <div class="container">
 
     <div class="row">
         <div class="col-sm-12">
+          <div class="paging__container" [ngClass]="{'paging-container--float-right': totalPages === 1}">
+            <nav aria-label="..." *ngIf="totalPages > 1">
+              <ul class="pagination">
+                <li class="page-item page-btn" [ngClass]="{'disabled': currentPage === 1}">
+                  <a class="page-link" tabindex="-1" *ngIf="currentPage > 1" (click)="loadCarsList(currentPage - 1, pageSize, sortBy)">Previous</a>
+                  <a class="page-link" tabindex="-1" *ngIf="currentPage === 1">Previous</a>
+                </li>
+
+                <div class="page-buttons" *ngIf="currentPage === 1">
+                  <li class="page-item page-btn active">
+                    <a class="page-link">
+                      {{currentPage}}
+                    </a>
+                  </li>
+                  <li class="page-item page-btn" (click)="loadCarsList(currentPage + 1, pageSize, sortBy)">
+                    <a class="page-link">
+                      {{currentPage + 1}}
+                    </a>
+                  </li>
+                  <li class="page-item page-btn" *ngIf="totalPages >= 3" (click)="loadCarsList(currentPage + 2, pageSize, sortBy)">
+                    <a class="page-link">
+                      {{currentPage + 2}}
+                    </a>
+                  </li>
+                </div>
+
+                <div class="page-buttons" *ngIf="currentPage > 1 && currentPage < lastPage">
+                  <li class="page-item page-btn" (click)="loadCarsList(currentPage - 1, pageSize, sortBy)">
+                    <a class="page-link">
+                      {{currentPage - 1}}
+                    </a>
+                  </li>
+                  <li class="page-item page-btn active">
+                    <a class="page-link">
+                      {{currentPage}}
+                    </a>
+                  </li>
+                  <li class="page-item page-btn" *ngIf="totalPages >= 3" (click)="loadCarsList(currentPage + 1, pageSize, sortBy)">
+                    <a class="page-link">
+                      {{currentPage + 1}}
+                    </a>
+                  </li>
+                </div>
+
+                <div class="page-buttons" *ngIf="currentPage === lastPage">
+                  <li class="page-item page-btn" *ngIf="totalPages >= 3" (click)="loadCarsList(currentPage - 2, pageSize, sortBy)">
+                    <a class="page-link">
+                      {{currentPage - 2}}
+                    </a>
+                  </li>
+                  <li class="page-item page-btn" (click)="loadCarsList(currentPage - 1, pageSize, sortBy)">
+                    <a class="page-link">
+                      {{currentPage - 1}}
+                    </a>
+                  </li>
+                  <li class="page-item page-btn active">
+                    <a class="page-link">
+                      {{currentPage}}
+                    </a>
+                  </li>
+                </div>
+
+                <li class="page-item page-btn" [ngClass]="{'disabled': currentPage === lastPage}">
+                  <a class="page-link" tabindex="-1" *ngIf="currentPage < lastPage" (click)="loadCarsList(currentPage + 1, pageSize, sortBy)">Next</a>
+                  <a class="page-link" tabindex="-1" *ngIf="currentPage === lastPage">Next</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="col-sm-2 paging__select-elements-on-page--width" [ngClass]="{'paging__select-elements-on-page--margin': totalPages === 1}">
+              <select class="form-control paging__select-elements-on-page"
+                      (change)="changeCarsListSize()"
+                      [(ngModel)]="pageSize">
+                <option [ngValue]="5">5 - elements on page</option>
+                <option [ngValue]="10">10 - elements on page</option>
+                <option [ngValue]="15">15 - elements on page</option>
+              </select>
+            </div>
+          </div>
             <table *ngIf="cars && cars.length > 0; else noCarsInfo" class="cs-table table table-striped">
                 <thead>
                     <tr>
@@ -40,74 +108,84 @@
                     </tr>
                 </tbody>
             </table>
-          <nav aria-label="..." *ngIf="totalPages > 1">
-            <ul class="pagination">
-              <li class="page-item page-btn" [ngClass]="{'disabled': currentPage === 1}">
-                <a class="page-link" tabindex="-1" *ngIf="currentPage > 1" (click)="loadCarsListByPageNo(currentPage - 1)">Previous</a>
-                <a class="page-link" tabindex="-1" *ngIf="currentPage === 1">Previous</a>
-              </li>
+          <div class="paging__container" [ngClass]="{'paging-container--float-right': totalPages === 1}">
+            <nav aria-label="..." *ngIf="totalPages > 1">
+              <ul class="pagination">
+                <li class="page-item page-btn" [ngClass]="{'disabled': currentPage === 1}">
+                  <a class="page-link" tabindex="-1" *ngIf="currentPage > 1" (click)="loadCarsList(currentPage - 1, pageSize, sortBy)">Previous</a>
+                  <a class="page-link" tabindex="-1" *ngIf="currentPage === 1">Previous</a>
+                </li>
 
-              <div class="page-buttons" *ngIf="currentPage === 1">
-                <li class="page-item page-btn active">
-                  <a class="page-link">
-                    {{currentPage}} <span class="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li class="page-item page-btn" (click)="loadCarsListByPageNo(currentPage + 1)">
-                  <a class="page-link">
-                    {{currentPage + 1}}
-                  </a>
-                </li>
-                <li class="page-item page-btn" *ngIf="totalPages >= 3" (click)="loadCarsListByPageNo(currentPage + 2)">
-                  <a class="page-link">
-                    {{currentPage + 2}}
-                  </a>
-                </li>
-              </div>
+                <div class="page-buttons" *ngIf="currentPage === 1">
+                  <li class="page-item page-btn active">
+                    <a class="page-link">
+                      {{currentPage}}
+                    </a>
+                  </li>
+                  <li class="page-item page-btn" (click)="loadCarsList(currentPage + 1, pageSize, sortBy)">
+                    <a class="page-link">
+                      {{currentPage + 1}}
+                    </a>
+                  </li>
+                  <li class="page-item page-btn" *ngIf="totalPages >= 3" (click)="loadCarsList(currentPage + 2, pageSize, sortBy)">
+                    <a class="page-link">
+                      {{currentPage + 2}}
+                    </a>
+                  </li>
+                </div>
 
-              <div class="page-buttons" *ngIf="currentPage > 1 && currentPage < lastPage">
-                <li class="page-item page-btn" (click)="loadCarsListByPageNo(currentPage - 1)">
-                  <a class="page-link">
-                    {{currentPage - 1}}
-                  </a>
-                </li>
-                <li class="page-item page-btn active">
-                  <a class="page-link">
-                    {{currentPage}} <span class="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li class="page-item page-btn" *ngIf="totalPages >= 3" (click)="loadCarsListByPageNo(currentPage + 1)">
-                  <a class="page-link">
-                    {{currentPage + 1}}
-                  </a>
-                </li>
-              </div>
+                <div class="page-buttons" *ngIf="currentPage > 1 && currentPage < lastPage">
+                  <li class="page-item page-btn" (click)="loadCarsList(currentPage - 1, pageSize, sortBy)">
+                    <a class="page-link">
+                      {{currentPage - 1}}
+                    </a>
+                  </li>
+                  <li class="page-item page-btn active">
+                    <a class="page-link">
+                      {{currentPage}}
+                    </a>
+                  </li>
+                  <li class="page-item page-btn" *ngIf="totalPages >= 3" (click)="loadCarsList(currentPage + 1, pageSize, sortBy)">
+                    <a class="page-link">
+                      {{currentPage + 1}}
+                    </a>
+                  </li>
+                </div>
 
-              <div class="page-buttons" *ngIf="currentPage === lastPage">
-                <li class="page-item page-btn" *ngIf="totalPages >= 3" (click)="loadCarsListByPageNo(currentPage - 2)">
-                  <a class="page-link">
-                    {{currentPage - 2}}
-                  </a>
-                </li>
-                <li class="page-item page-btn" (click)="loadCarsListByPageNo(currentPage - 1)">
-                  <a class="page-link">
-                    {{currentPage - 1}}
-                  </a>
-                </li>
-                <li class="page-item page-btn active">
-                  <a class="page-link">
-                    {{currentPage}} <span class="sr-only">(current)</span>
-                  </a>
-                </li>
-              </div>
+                <div class="page-buttons" *ngIf="currentPage === lastPage">
+                  <li class="page-item page-btn" *ngIf="totalPages >= 3" (click)="loadCarsList(currentPage - 2, pageSize, sortBy)">
+                    <a class="page-link">
+                      {{currentPage - 2}}
+                    </a>
+                  </li>
+                  <li class="page-item page-btn" (click)="loadCarsList(currentPage - 1, pageSize, sortBy)">
+                    <a class="page-link">
+                      {{currentPage - 1}}
+                    </a>
+                  </li>
+                  <li class="page-item page-btn active">
+                    <a class="page-link">
+                      {{currentPage}}
+                    </a>
+                  </li>
+                </div>
 
-              <li class="page-item page-btn" [ngClass]="{'disabled': currentPage === lastPage}">
-                <a class="page-link" tabindex="-1" *ngIf="currentPage < lastPage" (click)="loadCarsListByPageNo(currentPage + 1)">Next</a>
-                <a class="page-link" tabindex="-1" *ngIf="currentPage === lastPage">Next</a>
-              </li>
-            </ul>
-          </nav>
-
+                <li class="page-item page-btn" [ngClass]="{'disabled': currentPage === lastPage}">
+                  <a class="page-link" tabindex="-1" *ngIf="currentPage < lastPage" (click)="loadCarsList(currentPage + 1, pageSize, sortBy)">Next</a>
+                  <a class="page-link" tabindex="-1" *ngIf="currentPage === lastPage">Next</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="col-sm-2 paging__select-elements-on-page--width" [ngClass]="{'paging__select-elements-on-page--margin': totalPages === 1}">
+              <select class="form-control paging__select-elements-on-page"
+                      (change)="changeCarsListSize()"
+                      [(ngModel)]="pageSize">
+                <option [ngValue]="5">5 - elements on page</option>
+                <option [ngValue]="10">10 - elements on page</option>
+                <option [ngValue]="15">15 - elements on page</option>
+              </select>
+            </div>
+          </div>
             <ng-template #noCarsInfo>
                 <div class="no-cars-info">
                     <p>Currently no cars in service</p>

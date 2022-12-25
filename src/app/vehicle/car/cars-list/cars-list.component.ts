@@ -14,7 +14,7 @@ export class CarsListComponent implements OnInit {
   cars: Car[];
   totalPages: number = 0;
   currentPage: number = 1;
-  pageSize: number = 8;
+  pageSize: number = 5;
   sortBy: string = 'mark';
   lastPage: number;
 
@@ -45,9 +45,15 @@ export class CarsListComponent implements OnInit {
     });
   }
 
-  public loadCarsListByPageNo(pageNo: number): void {
+  public loadCarsList(pageNo: number, pageSize: number, sortBy: string): void {
     this.currentPage = pageNo;
+    this.pageSize = pageSize;
+    this.sortBy = sortBy;
     this.loadCars(this.currentPage - 1, this.pageSize, this.sortBy);
+  }
+
+  public changeCarsListSize(): void {
+    this.loadCarsList(1, this.pageSize, this.sortBy);
   }
 
 }
