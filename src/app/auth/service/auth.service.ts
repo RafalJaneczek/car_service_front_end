@@ -6,7 +6,7 @@ import {LoginRequest} from "../model/login-request";
 import {JwtResponse} from "../model/JwtResponse";
 import {API_URL} from "../../global-variables";
 
-const AUTH_API = '/auth/user/';
+const AUTH_API = API_URL + '/auth/user/';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   public login(loginRequest: LoginRequest): Observable<JwtResponse> {
-    return this.http.post<JwtResponse>(API_URL + AUTH_API + 'login', {
+    return this.http.post<JwtResponse>(AUTH_API + 'login', {
       username: loginRequest.username,
       password: loginRequest.password
     }, httpOptions).pipe(map((response: JwtResponse) => {
