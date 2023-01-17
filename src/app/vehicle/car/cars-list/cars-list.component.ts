@@ -16,6 +16,7 @@ export class CarsListComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 5;
   sortBy: string = 'mark';
+  sortDirection: string = 'DESC';
   lastPage: number;
 
   constructor(private carsService: CarService,
@@ -54,6 +55,10 @@ export class CarsListComponent implements OnInit {
 
   public changeCarsListSize(): void {
     this.loadCarsList(1, this.pageSize, this.sortBy);
+  }
+
+  public sortByMark(): void {
+
   }
 
 }

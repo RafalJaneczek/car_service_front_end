@@ -1,3 +1,4 @@
+<cs-main-content>
 <cs-header>
   <p levels>cars</p>
 
@@ -6,7 +7,6 @@
   </div>
 </cs-header>
 <div class="container">
-
     <div class="row">
         <div class="col-sm-12">
           <div class="paging__container" [ngClass]="{'paging-container--float-right': totalPages === 1}">
@@ -90,7 +90,9 @@
             <table *ngIf="cars && cars.length > 0; else noCarsInfo" class="cs-table table table-striped">
                 <thead>
                     <tr>
-                        <th>Mark</th>
+                        <th>
+                          Mark <img src="assets/icons/arrow-down.svg">
+                        </th>
                         <th>Model</th>
                         <th>Production year</th>
                         <th>Price</th>
@@ -194,3 +196,4 @@
         </div>
     </div>
 </div>
+</cs-main-content>

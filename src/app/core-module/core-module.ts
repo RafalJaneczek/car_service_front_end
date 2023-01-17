@@ -12,11 +12,11 @@ import {NgxCollapseModule} from "ngx-collapse";
   exports: [
     SidebarComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        NgxCollapseModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule,
+    NgxCollapseModule
+  ]
 })
 export class CoreModule {
 }
