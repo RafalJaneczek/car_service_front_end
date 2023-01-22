@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CarDetailsComponent} from "./car-details/car-details.component";
-import {CarResolve} from "./service/car-resolve.service";
+import {CarDetailsComponent} from './car-details/car-details.component';
+import {CarResolve} from './service/car-resolve.service';
 
 const CARS_ROUTES: Routes = [
   {
-    path: 'cars/:id',
+    path: 'car-form/edit/:id',
     component: CarDetailsComponent,
     resolve: {car: CarResolve}
   }

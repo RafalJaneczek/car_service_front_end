@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {map, Observable} from "rxjs";
-import {SignUpRequest} from "../model/sign-up-request";
-import {LoginRequest} from "../model/login-request";
-import {JwtResponse} from "../model/JwtResponse";
-import {API_URL} from "../../global-variables";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {map, Observable} from 'rxjs';
+import {SignUpRequest} from '../model/sign-up-request';
+import {LoginRequest} from '../model/login-request';
+import {JwtResponse} from '../model/JwtResponse';
+import {API_URL} from '../../global-variables';
+import {NgxPermissionsService} from 'ngx-permissions';
 
 const AUTH_API = API_URL + '/auth/user/';
 const httpOptions = {
@@ -14,7 +15,7 @@ const httpOptions = {
 @Injectable()
 export class AuthService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private permissionsService: NgxPermissionsService) {
   }
 
   public login(loginRequest: LoginRequest): Observable<JwtResponse> {
@@ -32,6 +33,10 @@ export class AuthService {
       email: signUpRequest.email,
       password: signUpRequest.password
     }, httpOptions);
+  }
+
+  public loadUserPermissions(userPermissions: string[]): void {
+    this.permissionsService.addPermission(userPermissions);
   }
 
 }

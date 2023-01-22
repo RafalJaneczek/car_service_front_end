@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CarService} from '../service/car.service';
 import {Car} from '../model/car';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CarFixture} from '../utils/car-fixture';
 import {VehicleFixture} from '../../utils/vehicle-fixture';
 import {acceptOnlyDigits} from '../../validators';
-import {VehicleUtils} from "../../utils/Vehicle-utils";
+import {VehicleUtils} from '../../utils/Vehicle-utils';
 
 @Component({
   selector: 'app-car-form',
@@ -21,7 +21,7 @@ export class CarFormComponent implements OnInit {
   car: Car;
 
   @Input()
-  isUpdateForm: boolean = false;
+  isEditForm: boolean;
 
   bodyTypes: Map<string, string> = CarFixture.bodyTypes;
   engineTypes: Map<string, string> = CarFixture.engineTypes;
@@ -46,6 +46,7 @@ export class CarFormComponent implements OnInit {
   private readonly EMPTY_STRING = '';
 
   constructor(private carsService: CarService,
+              private activatedRoute: ActivatedRoute,
               private router: Router) {
   }
 
@@ -85,7 +86,7 @@ export class CarFormComponent implements OnInit {
   }
 
   private createControls(): void {
-    if (this.isUpdateForm) {
+    if (this.isEditForm) {
       this.mark = new FormControl(this.car.mark, [Validators.required, Validators.minLength(2)]);
       this.model = new FormControl(this.car.model, [Validators.required, Validators.minLength(2)]);
       this.bodyType = new FormControl(this.car.bodyType);

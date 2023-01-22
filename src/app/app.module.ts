@@ -11,6 +11,7 @@ import {MotorcycleModule} from './vehicle/motorcycle/Motorcycle-module';
 import {authInterceptorProviders} from './auth/helper/AuthInterceptor';
 import {AuthModule} from './auth/auth.module';
 import {CarModule} from './vehicle/car/car.module';
+import {NgxPermissionsModule} from 'ngx-permissions';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {CarModule} from './vehicle/car/car.module';
     CarRoutingModule,
     MotorcycleModule,
     CarModule,
-    AuthModule
+    AuthModule,
+    NgxPermissionsModule.forRoot()
   ],
   providers: [
     authInterceptorProviders

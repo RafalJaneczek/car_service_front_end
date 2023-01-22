@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../service/auth.service';
 import {UserSessionService} from '../service/user-session.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'cs-login',
@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.authService.login(this.loginForm.value).subscribe(
       response => {
-        console.log(response);
         this.userSessionService.saveToken(response.token);
         this.userSessionService.saveUser(response);
+        this.authService.loadUserPermissions(response.roles);
         this.router.navigate(['/cars']);
       },
       err => {

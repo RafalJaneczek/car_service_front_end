@@ -4,8 +4,8 @@ import {HeaderComponent} from './header/header.component';
 import {SurnameShortcutPipe} from './pipes/surname-shortcut.pipe';
 import {ImportantDirective} from './directives/important.directive';
 import {MainContentComponent} from './main-content/main-content.component';
-import {CoreModule} from '../core-module/core-module';
 import {RouterModule} from '@angular/router';
+import {CoreModule} from '../core-module/core-module';
 
 
 @NgModule({

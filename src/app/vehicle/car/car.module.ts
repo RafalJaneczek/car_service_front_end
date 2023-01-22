@@ -7,6 +7,7 @@ import {RouterModule} from '@angular/router';
 import {CarResolve} from './service/car-resolve.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CarFormComponent} from './car-from/car-form.component';
+import { CarAddComponent } from './car-add/car-add.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {CarFormComponent} from './car-from/car-form.component';
   declarations: [
     CarsListComponent,
     CarDetailsComponent,
-    CarFormComponent
+    CarFormComponent,
+    CarAddComponent
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {RouterModule} from "@angular/router";
 import {NgxCollapseModule} from "ngx-collapse";
+import {NgxPermissionsModule} from "ngx-permissions";
 
 
 @NgModule({
@@ -12,11 +13,12 @@ import {NgxCollapseModule} from "ngx-collapse";
   exports: [
     SidebarComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgxCollapseModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        NgxCollapseModule,
+        NgxPermissionsModule
+    ]
 })
 export class CoreModule {
 }

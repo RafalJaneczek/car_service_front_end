@@ -12,7 +12,7 @@
           <div class="paging__container" [ngClass]="{'paging-container--float-right': totalPages === 1}">
             <nav aria-label="..." *ngIf="totalPages > 1">
               <ul class="pagination">
-                <li class="page-item page-btn" [ngClass]="{'disabled': currentPage === 1}">
+                <li class="page-item page-btn page-btn_margin-right" [ngClass]="{'disabled': currentPage === 1}">
                   <a class="page-link" tabindex="-1" *ngIf="currentPage > 1" (click)="loadCarsList(currentPage - 1, pageSize, sortBy)">Previous</a>
                   <a class="page-link" tabindex="-1" *ngIf="currentPage === 1">Previous</a>
                 </li>
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="page-buttons" *ngIf="currentPage > 1 && currentPage < lastPage">
-                  <li class="page-item page-btn" (click)="loadCarsList(currentPage - 1, pageSize, sortBy)">
+                  <li class="page-item page-btn page-btn_margin-left" (click)="loadCarsList(currentPage - 1, pageSize, sortBy)">
                     <a class="page-link">
                       {{currentPage - 1}}
                     </a>

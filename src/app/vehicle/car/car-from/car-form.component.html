@@ -1,16 +1,3 @@
-<cs-main-content>
-<div *ngIf="!isUpdateForm">
-  <cs-header>
-    <p levels>add new car</p>
-
-    <div content>
-      <p>Car details</p>
-    </div>
-  </cs-header>
-
-  <p class="data-header">Add a new car</p>
-</div>
-
 <div class="data-container">
   <form [formGroup]="carForm">
     <div class="row form-group">
@@ -129,12 +116,11 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <button *ngIf="!isUpdateForm" [disabled]="carForm.invalid" (click)="addCar()" type="submit" class="btn btn-primary float-right">Add car</button>
-        <button *ngIf="isUpdateForm" [disabled]="carForm.invalid" (click)="updateCar()" type="submit" class="btn btn-primary float-right">Update car</button>
+        <button *ngIf="!isEditForm" [disabled]="carForm.invalid" (click)="addCar()" type="submit" class="btn btn-primary float-right">Add car</button>
+        <button *ngIf="isEditForm" [disabled]="carForm.invalid" (click)="updateCar()" type="submit" class="btn btn-primary float-right">Update car</button>
         <button (click)="carForm.reset()" type="submit" class="btn btn-default float-right">Reset</button>
       </div>
     </div>
   </form>
 
 </div>
-</cs-main-content>

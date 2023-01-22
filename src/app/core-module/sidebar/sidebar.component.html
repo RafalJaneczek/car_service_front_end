@@ -6,16 +6,16 @@
           [collapse]="vehiclesList">Vehicles list
       </li>
       <div [ngClass]="{'collapsed-section': vehiclesListActionBarsShown}" collapseContent #vehiclesList="collapseContent">
-        <li [routerLink]="['cars']" [routerLinkActive]="'active'">Cars list</li>
-        <li [routerLink]="['motorcycles']" [routerLinkActive]="'active'">Motorcycles list</li>
+        <li routerLink="/cars" routerLinkActive="active">Cars list</li>
+        <li routerLink="/motorcycles" routerLinkActive="active">Motorcycles list</li>
       </div>
-      <li (click)="showVehicleActionBars()" [ngClass]="{'main-section-active': vehicleFormsActionBarsShown}"
+      <li *ngxPermissionsOnly="['ROLE_ADMIN']" (click)="showVehicleActionBars()" [ngClass]="{'main-section-active': vehicleFormsActionBarsShown}"
           [collapse]="vehicleForms">
         Add new vehicle
       </li>
       <div [ngClass]="{'collapsed-section': vehicleFormsActionBarsShown}" collapseContent #vehicleForms="collapseContent">
-        <li [routerLink]="['add-car']" [routerLinkActive]="'active'">Add new car</li>
-        <li [routerLink]="['add-motorcycle']" [routerLinkActive]="'active'">Add new motorcycle</li>
+        <li routerLink="/car-form/add" routerLinkActive="active">Add new car</li>
+        <li routerLink="/add-motorcycle" routerLinkActive="active">Add new motorcycle</li>
       </div>
     </ul>
   </nav>

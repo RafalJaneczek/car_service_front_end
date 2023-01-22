@@ -35,7 +35,7 @@ export class CarsListComponent implements OnInit {
   }
 
   public goToCarDetails(car: Car) {
-    this.router.navigate(['/cars', car.id]);
+    this.router.navigate(['/car-form/edit', car.id]);
   }
 
   public loadCars(pageNo: number, pageSize: number, sortBy: string): void {
