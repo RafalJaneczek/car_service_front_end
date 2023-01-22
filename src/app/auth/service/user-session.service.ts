@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {SessionObject} from '../model/SessionObject';
-import {Router} from "@angular/router";
-import {NgxPermissionsService} from "ngx-permissions";
+import {Router} from '@angular/router';
+import {NgxPermissionsService} from 'ngx-permissions';
 
 
 @Injectable({

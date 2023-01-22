@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {CarService} from '../service/car.service';
-import {Car} from '../model/car';
+import {CarService} from '../../service/car.service';
+import {Car} from '../../model/car';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CarFixture} from '../utils/car-fixture';
-import {VehicleFixture} from '../../utils/vehicle-fixture';
-import {acceptOnlyDigits} from '../../validators';
-import {VehicleUtils} from '../../utils/Vehicle-utils';
+import {CarFixture} from '../../utils/car-fixture';
+import {VehicleFixture} from '../../../utils/vehicle-fixture';
+import {acceptOnlyDigits} from '../../../validators';
+import {VehicleUtils} from '../../../utils/Vehicle-utils';
 
 @Component({
   selector: 'app-car-form',

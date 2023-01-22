@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../service/auth.service';
-import {UserSessionService} from '../service/user-session.service';
+import {AuthService} from '../../service/auth.service';
+import {UserSessionService} from '../../service/user-session.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
