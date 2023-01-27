@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../service/auth.service';
-import {UserSessionService} from '../../service/user-session.service';
+import {UserService} from '../../service/user.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {JwtResponse} from '../../model/JwtResponse';
+import {ResponseStatus} from '../../../shared-module/model/response-status';
 
 @Component({
   selector: 'cs-login',
@@ -17,7 +19,7 @@ export class LoginComponent implements OnInit {
   password: FormControl;
 
   constructor(private authService: AuthService,
-              private userSessionService: UserSessionService,
+              private userSessionService: UserService,
               private router: Router) {
   }
 
@@ -26,22 +28,28 @@ export class LoginComponent implements OnInit {
     this.createForm();
   }
 
-  login(): void {
+  public login(): void {
     this.authService.login(this.loginForm.value).subscribe(
       response => {
-        this.userSessionService.saveToken(response.token);
-        this.userSessionService.saveUser(response);
-        this.authService.loadUserPermissions(response.roles);
-        this.router.navigate(['/cars']);
+        console.log(ResponseStatus.SUCCESS);
+        switch (response.status) {
+          case ResponseStatus.SUCCESS: {
+            const body: JwtResponse = response.body;
+            this.userSessionService.saveToken(body.token);
+            this.userSessionService.saveUser(body);
+            this.authService.loadUserPermissions(body.roles);
+            this.router.navigate(['/cars']);
+            break;
+          }
+          case ResponseStatus.ERROR: {
+            console.log(response.message);
+          }
+        }
       },
       err => {
         this.errorMessage = err.error.message;
       }
     );
-  }
-
-  reloadPage(): void {
-    window.location.reload();
   }
 
   private createForm(): void {

@@ -1,5 +1,5 @@
 <div class="sidebar">
-  <img src="assets/logo.png" class="logo">
+  <img src="../../../../assets/icons/car_logo.svg" class="logo">
   <nav>
     <ul>
       <li (click)="showVehiclesListActionBars()" [ngClass]="{'main-section-active': vehiclesListActionBarsShown}"
@@ -9,7 +9,7 @@
         <li routerLink="/cars" routerLinkActive="active">Cars list</li>
         <li routerLink="/motorcycles" routerLinkActive="active">Motorcycles list</li>
       </div>
-      <li *ngxPermissionsOnly="['ROLE_ADMIN']" (click)="showVehicleActionBars()" [ngClass]="{'main-section-active': vehicleFormsActionBarsShown}"
+      <li *ngxPermissionsOnly="['ROLE_USER']" (click)="showVehicleActionBars()" [ngClass]="{'main-section-active': vehicleFormsActionBarsShown}"
           [collapse]="vehicleForms">
         Add new vehicle
       </li>

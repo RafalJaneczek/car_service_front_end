@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserSessionService} from '../../../auth/service/user-session.service';
+import {UserService} from '../../../auth/service/user.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   isUserLoggedIn: boolean = false;
 
-  constructor(public userSessionService: UserSessionService, private router: Router) {}
+  constructor(public userSessionService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.isUserLoggedIn = this.userSessionService.isUserLoggedIn();
@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
 
   public logOut(): void {
     this.userSessionService.logOut();
+    this.isUserLoggedIn = false;
     this.router.navigateByUrl('/cars', {skipLocationChange: true}).then(()=>
       this.router.navigate(['/cars']));
   }

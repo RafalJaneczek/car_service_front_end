@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {SessionObject} from '../model/SessionObject';
+import {SessionObject} from '../model/session-object';
 import {Router} from '@angular/router';
 import {NgxPermissionsService} from 'ngx-permissions';
 
@@ -7,7 +7,7 @@ import {NgxPermissionsService} from 'ngx-permissions';
 @Injectable({
   providedIn: 'root'
 })
-export class UserSessionService {
+export class UserService {
 
   constructor(private router: Router, private permissionsService: NgxPermissionsService) {
   }

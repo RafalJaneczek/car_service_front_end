@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {CarsListComponent} from './vehicle/car/component/cars-list/cars-list.component';
 import {MotorcycleFormComponent} from './vehicle/motorcycle/motorcycle-form/motorcycle-form.component';
 import {MotorcyclesListComponent} from './vehicle/motorcycle/motorcycles-list/motorcycles-list.component';
-import {SignUpComponent} from './auth/component/register/sign-up.component';
+import {SignUpComponent} from './auth/component/sign-up/sign-up.component';
 import {LoginComponent} from './auth/component/login/login.component';
 import {CarAddComponent} from './vehicle/car/component/car-add/car-add.component';
 import {AuthGuard} from './auth/service/auth-guard.service';

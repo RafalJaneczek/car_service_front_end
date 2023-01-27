@@ -2,7 +2,8 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CarDetailsComponent} from './component/car-details/car-details.component';
 import {CarResolve} from './service/car-resolve.service';
-import {AuthGuard} from "../../auth/service/auth-guard.service";
+import {AuthGuard} from '../../auth/service/auth-guard.service';
+import {CarAddComponent} from './component/car-add/car-add.component';
 
 const CARS_ROUTES: Routes = [
   {
@@ -12,6 +13,14 @@ const CARS_ROUTES: Routes = [
     canActivate: [AuthGuard],
     data: {
       role: ['ROLE_MOD']
+    }
+  },
+  {
+    path: 'car-form/add',
+    component: CarAddComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN']
     }
   }
 ];

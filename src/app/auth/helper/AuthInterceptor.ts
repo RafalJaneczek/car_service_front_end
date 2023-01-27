@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {UserSessionService} from '../service/user-session.service';
+import {UserService} from '../service/user.service';
 import {TOKEN_HEADER_KEY} from '../../global-variables';
-import {SessionObject} from '../model/SessionObject';
+import {SessionObject} from '../model/session-object';
 
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private userSessionService: UserSessionService) {
+  constructor(private userSessionService: UserService) {
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

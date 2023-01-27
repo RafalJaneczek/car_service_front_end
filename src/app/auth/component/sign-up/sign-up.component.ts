@@ -9,13 +9,14 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
-  isSuccessful = false;
-  isSignUpFailed = false;
-  errorMessage = '';
   signUpForm: FormGroup;
   username: FormControl;
   email: FormControl;
   password: FormControl;
+  success: boolean;
+  warning: boolean;
+  error: boolean;
+  responseMsg: string;
 
   constructor(private authService: AuthService) {
   }
@@ -41,16 +42,21 @@ export class SignUpComponent implements OnInit {
 
   public onSubmit(): void {
     this.authService.signup(this.signUpForm.value).subscribe(
-      data => {
-        console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
+      response => {
+        this.success = true;
+        this.responseMsg = response.message;
       },
       err => {
-        this.errorMessage = err.error.message;
-        this.isSignUpFailed = true;
+        this.error = true;
+        this.responseMsg = err.error.message;
       }
     )
+  }
+
+  private clearStatuses(): void {
+    this.success = false;
+    this.warning = false;
+    this.error = false;
   }
 
 }

@@ -3,9 +3,9 @@ import {CommonModule} from '@angular/common';
 import {SharedModule} from '../../shared-module/shared-module';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
-import {MotorcycleFormComponent} from "./motorcycle-form/motorcycle-form.component";
-import {MotorcycleService} from "./service/motorcycle.service";
-import {MotorcyclesListComponent} from "./motorcycles-list/motorcycles-list.component";
+import {MotorcycleFormComponent} from './motorcycle-form/motorcycle-form.component';
+import {MotorcycleService} from './service/motorcycle.service';
+import {MotorcyclesListComponent} from './motorcycles-list/motorcycles-list.component';
 
 
 @NgModule({

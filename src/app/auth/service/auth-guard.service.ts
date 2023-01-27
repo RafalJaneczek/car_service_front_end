@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
-import {UserSessionService} from './user-session.service';
+import {UserService} from './user.service';
 import {NgxPermissionsService} from 'ngx-permissions';
 
 @Injectable({
@@ -9,7 +9,9 @@ import {NgxPermissionsService} from 'ngx-permissions';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private userSessionService: UserSessionService,
+  hasPermissions: boolean;
+
+  constructor(private userSessionService: UserService,
               private permissionsService: NgxPermissionsService,
               private router: Router) {
   }
@@ -19,12 +21,12 @@ export class AuthGuard implements CanActivate {
   }
 
   private ifUserHasPermission(route: ActivatedRouteSnapshot): boolean {
-    let hasPermissions: boolean = false;
     this.permissionsService.hasPermission(route.data['role']).then(result => {
-      hasPermissions = result;
+      this.hasPermissions = result;
     });
 
-    if (!hasPermissions) {
+    if (!this.hasPermissions) {
+      console.log(this.hasPermissions);
       this.router.navigate(['/no-permission'])
       return false
     } else {

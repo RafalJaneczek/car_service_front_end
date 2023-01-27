@@ -5,14 +5,17 @@ import {SurnameShortcutPipe} from './pipes/surname-shortcut.pipe';
 import {ImportantDirective} from './directives/important.directive';
 import {MainContentComponent} from './component/main-content/main-content.component';
 import {RouterModule} from '@angular/router';
-import {CoreModule} from '../core-module/core-module';
+import {SidebarComponent} from './component/sidebar/sidebar.component';
+import {NgxCollapseModule} from 'ngx-collapse';
+import {NgxPermissionsModule} from "ngx-permissions";
 
 
 @NgModule({
   imports: [
     CommonModule,
-    CoreModule,
-    RouterModule
+    RouterModule,
+    NgxCollapseModule,
+    NgxPermissionsModule
   ],
   exports: [
     HeaderComponent,
@@ -24,7 +27,8 @@ import {CoreModule} from '../core-module/core-module';
     HeaderComponent,
     SurnameShortcutPipe,
     ImportantDirective,
-    MainContentComponent
+    MainContentComponent,
+    SidebarComponent
   ]
 })
 export class SharedModule {

@@ -6,6 +6,8 @@ import {LoginRequest} from '../model/login-request';
 import {JwtResponse} from '../model/JwtResponse';
 import {API_URL} from '../../global-variables';
 import {NgxPermissionsService} from 'ngx-permissions';
+import {BaseResponse} from '../../shared-module/model/base-response';
+import {ErrorInfo} from "../../shared-module/model/ErrorInfo";
 
 const AUTH_API = API_URL + '/auth/user/';
 const httpOptions = {
@@ -18,21 +20,23 @@ export class AuthService {
   constructor(private http: HttpClient, private permissionsService: NgxPermissionsService) {
   }
 
-  public login(loginRequest: LoginRequest): Observable<JwtResponse> {
-    return this.http.post<JwtResponse>(AUTH_API + 'login', {
+  public login(loginRequest: LoginRequest): Observable<BaseResponse<any>> {
+    return this.http.post<BaseResponse<any>>(AUTH_API + 'login', {
       username: loginRequest.username,
       password: loginRequest.password
-    }, httpOptions).pipe(map((response: JwtResponse) => {
-      return response as JwtResponse;
+    }, httpOptions).pipe(map((response: BaseResponse<JwtResponse | ErrorInfo>) => {
+      return response;
     }));
   }
 
-  public signup(signUpRequest: SignUpRequest): Observable<any> {
-    return this.http.post(AUTH_API + 'signup', {
+  public signup(signUpRequest: SignUpRequest): Observable<BaseResponse<any>> {
+    return this.http.post<BaseResponse<any>>(AUTH_API + 'signup', {
       username: signUpRequest.username,
       email: signUpRequest.email,
       password: signUpRequest.password
-    }, httpOptions);
+    }, httpOptions).pipe(map((response: BaseResponse<any>) => {
+      return response;
+    }));
   }
 
   public loadUserPermissions(userPermissions: string[]): void {
