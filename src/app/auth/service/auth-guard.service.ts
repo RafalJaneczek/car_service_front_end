@@ -9,7 +9,6 @@ import {NgxPermissionsService} from 'ngx-permissions';
 })
 export class AuthGuard implements CanActivate {
 
-  hasPermissions: boolean;
 
   constructor(private userSessionService: UserService,
               private permissionsService: NgxPermissionsService,
@@ -21,12 +20,11 @@ export class AuthGuard implements CanActivate {
   }
 
   private ifUserHasPermission(route: ActivatedRouteSnapshot): boolean {
-    this.permissionsService.hasPermission(route.data['role']).then(result => {
-      this.hasPermissions = result;
+    const hasPermissions = this.permissionsService.hasPermission(route.data['role']).then(result => {
+      return result;
     });
 
-    if (!this.hasPermissions) {
-      console.log(this.hasPermissions);
+    if (!hasPermissions) {
       this.router.navigate(['/no-permission'])
       return false
     } else {

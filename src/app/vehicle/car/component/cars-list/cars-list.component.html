@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-          <div class="paging__container" [ngClass]="{'paging-container--float-right': totalPages === 1}">
+          <div *ngIf="cars && cars.length > 0" class="paging__container" [ngClass]="{'paging-container--float-right': totalPages === 1}">
             <nav aria-label="..." *ngIf="totalPages > 1">
               <ul class="pagination">
                 <li class="page-item page-btn page-btn_margin-right" [ngClass]="{'disabled': currentPage === 1}">
@@ -108,7 +108,7 @@
                     </tr>
                 </tbody>
             </table>
-          <div class="paging__container" [ngClass]="{'paging-container--float-right': totalPages === 1}">
+          <div *ngIf="cars && cars.length > 0" class="paging__container" [ngClass]="{'paging-container--float-right': totalPages === 1}">
             <nav aria-label="..." *ngIf="totalPages > 1">
               <ul class="pagination">
                 <li class="page-item page-btn" [ngClass]="{'disabled': currentPage === 1}">

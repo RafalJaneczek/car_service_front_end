@@ -4,7 +4,6 @@ import {UserService} from '../../service/user.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {JwtResponse} from '../../model/JwtResponse';
-import {ResponseStatus} from '../../../shared-module/model/response-status';
 
 @Component({
   selector: 'cs-login',
@@ -17,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   username: FormControl;
   password: FormControl;
+  error: boolean;
 
   constructor(private authService: AuthService,
               private userSessionService: UserService,
@@ -31,23 +31,15 @@ export class LoginComponent implements OnInit {
   public login(): void {
     this.authService.login(this.loginForm.value).subscribe(
       response => {
-        console.log(ResponseStatus.SUCCESS);
-        switch (response.status) {
-          case ResponseStatus.SUCCESS: {
-            const body: JwtResponse = response.body;
+            const body: JwtResponse = response;
             this.userSessionService.saveToken(body.token);
             this.userSessionService.saveUser(body);
             this.authService.loadUserPermissions(body.roles);
             this.router.navigate(['/cars']);
-            break;
-          }
-          case ResponseStatus.ERROR: {
-            console.log(response.message);
-          }
-        }
       },
       err => {
-        this.errorMessage = err.error.message;
+        this.error = true;
+        this.errorMessage = 'Incorrect login or password!';
       }
     );
   }

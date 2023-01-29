@@ -25,6 +25,9 @@
             {{bodyType.value}}
           </option>
         </select>
+        <div *ngIf="bodyType.errors && (bodyType.dirty || bodyType.touched)">
+          <p *ngIf="bodyType.errors?.['bodyType']" class="error-info">This field is required!</p>
+        </div>
       </div>
     </div>
 
@@ -45,6 +48,9 @@
             {{productionYear}}
           </option>
         </select>
+        <div *ngIf="productionYear.errors && (productionYear.dirty || productionYear.touched)">
+          <p *ngIf="productionYear.errors?.['productionYear']" class="error-info">This field is required!</p>
+        </div>
       </div>
       <div class="col-sm-4">
         <label>Number Of seats</label>
@@ -54,6 +60,9 @@
             {{numberOfSeats}}
           </option>
         </select>
+        <div *ngIf="numberOfSeats.errors && (numberOfSeats.dirty || numberOfSeats.touched)">
+          <p *ngIf="numberOfSeats.errors?.['numberOfSeats']" class="error-info">This field is required!</p>
+        </div>
       </div>
     </div>
 
@@ -82,6 +91,9 @@
             {{engineType.value}}
           </option>
         </select>
+        <div *ngIf="engineType.errors && (engineType.dirty || engineType.touched)">
+          <p *ngIf="engineType.errors?.['engineType']" class="error-info">This field is required!</p>
+        </div>
       </div>
     </div>
 
@@ -94,6 +106,9 @@
             {{condition.value}}
           </option>
         </select>
+        <div *ngIf="vehicleCondition.errors && (vehicleCondition.dirty || vehicleCondition.touched)">
+          <p *ngIf="vehicleCondition.errors?.['vehicleCondition']" class="error-info">This field is required!</p>
+        </div>
       </div>
       <div class="col-sm-4">
         <label>Price</label>
@@ -111,6 +126,9 @@
             {{state.value}}
           </option>
         </select>
+        <div *ngIf="damaged.errors && (damaged.dirty || damaged.touched)">
+          <p *ngIf="damaged.errors?.['damaged']" class="error-info">This field is required!</p>
+        </div>
       </div>
     </div>
 
