@@ -36,6 +36,7 @@ export class AuthService {
   }
 
   public loadUserPermissions(userPermissions: string[]): void {
+    console.log(userPermissions);
     this.permissionsService.addPermission(userPermissions);
   }
 

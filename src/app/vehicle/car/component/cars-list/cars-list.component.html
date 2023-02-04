@@ -7,7 +7,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-          <div *ngIf="cars && cars.length > 0" class="paging__container" [ngClass]="{'paging-container--float-right': totalPages === 1}">
+          <div class="content" *ngIf="requestInProgress">
+            <cs-progress-circle></cs-progress-circle>
+          </div>
+          <div *ngIf="!requestInProgress && cars && cars.length > 0" class="paging__container" [ngClass]="{'paging-container--float-right': totalPages === 1}">
             <nav aria-label="..." *ngIf="totalPages > 1">
               <ul class="pagination">
                 <li class="page-item page-btn page-btn_margin-right" [ngClass]="{'disabled': currentPage === 1}">
@@ -102,8 +105,8 @@
                         <td>{{car.model}}</td>
                         <td>{{car.productionYear}}</td>
                         <td csImportant>{{car.price | currency:'PLN':true}}</td>
-                        <td>
-                          <button (click)="removeCar(car, $event)" type="button" class="btn btn-danger">Remove</button>
+                        <td *ngxPermissionsOnly="['ROLE_ADMIN']">
+                          <button (click)="openRemoveCarModal(car, $event)" type="button" class="btn btn-danger">Remove</button>
                         </td>
                     </tr>
                 </tbody>

@@ -9,7 +9,7 @@
         <li routerLink="/cars" routerLinkActive="active">Cars list</li>
         <li routerLink="/motorcycles" routerLinkActive="active">Motorcycles list</li>
       </div>
-      <li *ngxPermissionsOnly="['ROLE_USER']" (click)="showVehicleActionBars()" [ngClass]="{'main-section-active': vehicleFormsActionBarsShown}"
+      <li *ngxPermissionsOnly="['ROLE_ADMIN']" (click)="showVehicleActionBars()" [ngClass]="{'main-section-active': vehicleFormsActionBarsShown}"
           [collapse]="vehicleForms">
         Add new vehicle
       </li>

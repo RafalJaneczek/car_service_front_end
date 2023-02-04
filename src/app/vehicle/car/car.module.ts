@@ -7,7 +7,9 @@ import {RouterModule} from '@angular/router';
 import {CarResolve} from './service/car-resolve.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CarFormComponent} from './component/car-from/car-form.component';
-import { CarAddComponent } from './component/car-add/car-add.component';
+import {CarAddComponent} from './component/car-add/car-add.component';
+import {NgxPermissionsModule} from 'ngx-permissions';
+import {RemoveCarModalComponent} from './component/delete-car-modal/remove-car-modal.component';
 
 
 @NgModule({
@@ -19,14 +21,16 @@ import { CarAddComponent } from './component/car-add/car-add.component';
     CarsListComponent,
     CarDetailsComponent,
     CarFormComponent,
-    CarAddComponent
+    CarAddComponent,
+    RemoveCarModalComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPermissionsModule
   ]
 })
 export class CarModule {

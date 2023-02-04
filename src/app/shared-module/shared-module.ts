@@ -7,7 +7,9 @@ import {MainContentComponent} from './component/main-content/main-content.compon
 import {RouterModule} from '@angular/router';
 import {SidebarComponent} from './component/sidebar/sidebar.component';
 import {NgxCollapseModule} from 'ngx-collapse';
-import {NgxPermissionsModule} from "ngx-permissions";
+import {NgxPermissionsModule} from 'ngx-permissions';
+import {CircleProgressComponent} from './component/progress-circle/circle-progress.component';
+import {NgCircleProgressModule} from 'ng-circle-progress';
 
 
 @NgModule({
@@ -15,20 +17,23 @@ import {NgxPermissionsModule} from "ngx-permissions";
     CommonModule,
     RouterModule,
     NgxCollapseModule,
-    NgxPermissionsModule
+    NgxPermissionsModule,
+    NgCircleProgressModule
   ],
   exports: [
     HeaderComponent,
     SurnameShortcutPipe,
     ImportantDirective,
-    MainContentComponent
+    MainContentComponent,
+    CircleProgressComponent
   ],
   declarations: [
     HeaderComponent,
     SurnameShortcutPipe,
     ImportantDirective,
     MainContentComponent,
-    SidebarComponent
+    SidebarComponent,
+    CircleProgressComponent
   ]
 })
 export class SharedModule {
