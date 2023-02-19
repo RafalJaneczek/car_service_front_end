@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="pull-left">Remove vehicle</h4>
+  <button type="button" class="btn-close" (mousedown)="closeModal()" aria-label="Close"></button>
+</div>
+<div class="modal-body modal-content">
+  <div class="modal-content_display">
+    <p class="modal-content_font-weight">Mark:</p>
+    <p class="modal-content_margin-left">{{vehicle.mark}}</p>
+  </div>
+  <div class="modal-content_display">
+    <p class="modal-content_font-weight">Model:</p>
+    <p class="modal-content_margin-left">{{vehicle.model}}</p>
+  </div>
+  <div class="modal-content_display">
+    <p class="modal-content_font-weight">Production year:</p>
+    <p class="modal-content_margin-left">{{vehicle.productionYear}}</p>
+  </div>
+  <div class="modal-content_display">
+    <p class="modal-content_font-weight">Course:</p>
+    <p class="modal-content_margin-left">{{vehicle.course}}</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger" (click)="closeModal()">Remove</button>
+  <button type="button" class="btn btn-outline-primary" (click)="closeModal()">Close</button>
+</div>

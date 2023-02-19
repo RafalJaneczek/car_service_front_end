@@ -12,7 +12,7 @@ import {CarModule} from './vehicle/car/car.module';
 import {NgxPermissionsModule} from 'ngx-permissions';
 import {SharedModule} from './shared-module/shared-module';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {NgCircleProgressModule} from "ng-circle-progress";
+import {NgCircleProgressModule} from 'ng-circle-progress';
 
 @NgModule({
   declarations: [

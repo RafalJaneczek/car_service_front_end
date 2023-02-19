@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {CollapseCommonServiceService} from '../../service/collapse-common-service.service';
 
 @Component({
   selector: 'cs-main-content',
@@ -7,10 +8,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MainContentComponent implements OnInit {
 
-  constructor() {
-  }
+  isSideBarCollapsed: boolean = false;
+
+  constructor(private collapseCommonServiceService: CollapseCommonServiceService) {}
 
   ngOnInit(): void {
+    this.collapseCommonServiceService.collapseElementEvent.subscribe(() => {
+      this.isSideBarCollapsed = !this.isSideBarCollapsed
+    });
   }
 
 }

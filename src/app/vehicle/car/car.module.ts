@@ -9,7 +9,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CarFormComponent} from './component/car-from/car-form.component';
 import {CarAddComponent} from './component/car-add/car-add.component';
 import {NgxPermissionsModule} from 'ngx-permissions';
-import {RemoveCarModalComponent} from './component/delete-car-modal/remove-car-modal.component';
+import {RemoveVehicleModalComponent} from './component/delete-car-modal/remove-vehicle-modal.component';
 
 
 @NgModule({
@@ -22,7 +22,7 @@ import {RemoveCarModalComponent} from './component/delete-car-modal/remove-car-m
     CarDetailsComponent,
     CarFormComponent,
     CarAddComponent,
-    RemoveCarModalComponent
+    RemoveVehicleModalComponent
   ],
   imports: [
     CommonModule,

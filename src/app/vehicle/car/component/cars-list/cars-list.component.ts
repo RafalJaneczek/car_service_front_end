@@ -3,7 +3,7 @@ import {Car} from '../../model/car';
 import {CarService} from '../../service/car.service';
 import {Router} from '@angular/router';
 import {BsModalService} from 'ngx-bootstrap/modal';
-import {RemoveCarModalComponent} from '../delete-car-modal/remove-car-modal.component';
+import {RemoveVehicleModalComponent} from '../delete-car-modal/remove-vehicle-modal.component';
 
 @Component({
   selector: 'cars-list',
@@ -33,7 +33,16 @@ export class CarsListComponent implements OnInit {
 
   public openRemoveCarModal(car: Car, event: Event): void {
     event.stopPropagation();
-    this.modalService.show(RemoveCarModalComponent);
+    const initialState = {
+      vehicle: car
+    };
+
+    this.modalService.show(RemoveVehicleModalComponent, {
+      initialState,
+      animated: true,
+      backdrop: 'static',
+      class: 'modal-dialog-centered'
+    });
   }
 
   public removeCar(car: Car, event: Event) {

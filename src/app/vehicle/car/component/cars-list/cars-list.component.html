@@ -88,7 +88,7 @@
               </select>
             </div>
           </div>
-            <table *ngIf="cars && cars.length > 0; else noCarsInfo" class="cs-table table table-striped">
+            <table *ngIf="!requestInProgress && cars && cars.length > 0; else noCarsInfo" class="cs-table table table-striped">
                 <thead>
                     <tr>
                         <th>
@@ -106,7 +106,7 @@
                         <td>{{car.productionYear}}</td>
                         <td csImportant>{{car.price | currency:'PLN':true}}</td>
                         <td *ngxPermissionsOnly="['ROLE_ADMIN']">
-                          <button (click)="openRemoveCarModal(car, $event)" type="button" class="btn btn-danger">Remove</button>
+                          <button (click)="openRemoveCarModal(car, $event)" type="button" class="btn btn-outline-danger">Remove</button>
                         </td>
                     </tr>
                 </tbody>

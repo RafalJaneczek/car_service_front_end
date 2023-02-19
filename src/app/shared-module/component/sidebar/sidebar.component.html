@@ -2,18 +2,16 @@
   <img src="../../../../assets/icons/car_logo.svg" class="logo">
   <nav>
     <ul>
-      <li (click)="showVehiclesListActionBars()" [ngClass]="{'main-section-active': vehiclesListActionBarsShown}"
-          [collapse]="vehiclesList">Vehicles list
+      <li (click)="showVehiclesListActionBars()" [ngClass]="{'main-section-active': vehiclesListActionBarsShown}">Vehicles
       </li>
-      <div [ngClass]="{'collapsed-section': vehiclesListActionBarsShown}" collapseContent #vehiclesList="collapseContent">
-        <li routerLink="/cars" routerLinkActive="active">Cars list</li>
-        <li routerLink="/motorcycles" routerLinkActive="active">Motorcycles list</li>
+      <div [ngClass]="{'collapsed-section': vehiclesListActionBarsShown}" [collapse]="!vehiclesListActionBarsShown" [isAnimated]="true">
+        <li routerLink="/cars" routerLinkActive="active">Cars</li>
+        <li routerLink="/motorcycles" routerLinkActive="active">Motorcycles</li>
       </div>
-      <li *ngxPermissionsOnly="['ROLE_ADMIN']" (click)="showVehicleActionBars()" [ngClass]="{'main-section-active': vehicleFormsActionBarsShown}"
-          [collapse]="vehicleForms">
-        Add new vehicle
+      <li *ngxPermissionsOnly="['ROLE_ADMIN']" (click)="showVehicleActionBars()"
+          [ngClass]="{'main-section-active': vehicleFormsActionBarsShown}">Add new vehicle
       </li>
-      <div [ngClass]="{'collapsed-section': vehicleFormsActionBarsShown}" collapseContent #vehicleForms="collapseContent">
+      <div [ngClass]="{'collapsed-section': vehicleFormsActionBarsShown}" [collapse]="!vehicleFormsActionBarsShown" [isAnimated]="true">
         <li routerLink="/car-form/add" routerLinkActive="active">Add new car</li>
         <li routerLink="/add-motorcycle" routerLinkActive="active">Add new motorcycle</li>
       </div>

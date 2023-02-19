@@ -6,18 +6,20 @@ import {ImportantDirective} from './directives/important.directive';
 import {MainContentComponent} from './component/main-content/main-content.component';
 import {RouterModule} from '@angular/router';
 import {SidebarComponent} from './component/sidebar/sidebar.component';
-import {NgxCollapseModule} from 'ngx-collapse';
 import {NgxPermissionsModule} from 'ngx-permissions';
 import {CircleProgressComponent} from './component/progress-circle/circle-progress.component';
 import {NgCircleProgressModule} from 'ng-circle-progress';
+import {CollapseModule} from 'ngx-bootstrap/collapse';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    NgxCollapseModule,
+    CollapseModule,
     NgxPermissionsModule,
+    BrowserAnimationsModule,
     NgCircleProgressModule
   ],
   exports: [
